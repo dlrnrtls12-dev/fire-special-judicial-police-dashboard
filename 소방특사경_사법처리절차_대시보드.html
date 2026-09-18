@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>소방 특별사법경찰 사법처리 절차 대시보드</title>
+<style>
+:root{--navy:#132c46;--navy2:#1d4568;--blue:#256c91;--teal:#0f7c79;--mint:#e9f7f3;--ink:#172033;--muted:#667085;--line:#d8e2ea;--bg:#f4f7f9;--card:#fff;--amber:#a85b00;--amber-bg:#fff7e5;--red:#b42318;--red-bg:#fff1f0;--green:#067647;--green-bg:#edf9f2;--shadow:0 10px 28px rgba(19,44,70,.08)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;line-height:1.55}.app{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:100vh}.side{position:sticky;top:0;height:100vh;padding:26px 18px;background:linear-gradient(180deg,#102942,#173b59);color:#fff;overflow:auto}.brand{font-size:11px;letter-spacing:.12em;font-weight:900;color:#90d9d0}.side h1{font-size:20px;line-height:1.32;margin:8px 0 7px}.side .date{font-size:12px;color:#bbccda;margin-bottom:20px}.side nav{display:grid;gap:6px}.side button{width:100%;border:0;border-radius:10px;padding:10px 11px;text-align:left;background:transparent;color:#cee0ec;font:inherit;font-size:13px;cursor:pointer}.side button:hover,.side button.active{background:rgba(255,255,255,.13);color:#fff}.side .mini{margin-top:20px;padding:12px;border:1px solid rgba(255,255,255,.14);border-radius:12px;background:rgba(255,255,255,.06);font-size:11px;color:#c4d6e2}.main{max-width:1480px;padding:28px 34px 72px}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:18px}.eyebrow{font-size:12px;letter-spacing:.08em;color:var(--teal);font-weight:900}.top h2{font-size:30px;line-height:1.25;margin:5px 0}.top p{margin:0;color:var(--muted)}.actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.btn{border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--navy);padding:9px 13px;text-decoration:none;font-weight:800;font-size:13px;cursor:pointer}.btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}.btn:hover{transform:translateY(-1px);box-shadow:0 5px 14px rgba(19,44,70,.12)}.alert{display:flex;gap:12px;margin:17px 0;padding:14px 16px;border-radius:13px}.alert strong{display:block;margin-bottom:2px}.alert.amber{background:var(--amber-bg);border:1px solid #efd49d}.alert.red{background:var(--red-bg);border:1px solid #f2c1bd}.alert.green{background:var(--green-bg);border:1px solid #bde4cf}.icon{font-size:19px}.metrics{display:grid;grid-template-columns:repeat(5,minmax(140px,1fr));gap:12px;margin:18px 0}.metric{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px;box-shadow:var(--shadow)}.metric span{display:block;font-size:12px;color:var(--muted)}.metric b{display:block;font-size:25px;color:var(--navy);margin:2px 0}.metric small{color:var(--muted)}.panel{display:none}.panel.active{display:block}.card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:19px;box-shadow:var(--shadow);margin-bottom:16px}.card h3{margin:0 0 4px;font-size:19px;color:var(--navy)}.card h4{margin:16px 0 7px;color:var(--navy)}.sub{font-size:13px;color:var(--muted);margin-bottom:14px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.decision-box{display:grid;gap:10px}.question{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fbfcfd}.question b{display:block;color:var(--navy);margin-bottom:7px}.choice{display:flex;gap:7px;flex-wrap:wrap}.choice button{border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--navy);padding:7px 12px;font-weight:800;cursor:pointer}.choice button.selected{background:var(--teal);border-color:var(--teal);color:#fff}.result{border-left:5px solid var(--teal);background:var(--mint);border-radius:10px;padding:14px}.result strong{color:var(--navy)}.route{display:grid;grid-template-columns:repeat(5,minmax(150px,1fr));gap:10px}.step{position:relative;border:1px solid var(--line);border-radius:12px;background:#fff;padding:14px}.step em{font-style:normal;font-size:11px;font-weight:900;color:var(--teal)}.step b{display:block;color:var(--navy);margin:4px 0}.step span{font-size:12px;color:var(--muted)}.step:not(:last-child):after{content:"→";position:absolute;right:-11px;top:45%;color:var(--teal);font-weight:900;z-index:3}.forks{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.fork{border:1px solid var(--line);border-radius:12px;padding:15px}.fork h4{margin:0 0 6px}.fork p{font-size:13px;color:var(--muted);margin:0}.fork.green{border-top:4px solid var(--green)}.fork.amber{border-top:4px solid var(--amber)}.fork.blue{border-top:4px solid var(--blue)}.timeline{display:grid;gap:10px}.stage{display:grid;grid-template-columns:55px 155px minmax(230px,1fr) minmax(210px,.8fr);gap:12px;align-items:start;border:1px solid var(--line);border-radius:12px;padding:13px;background:#fff}.num{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:#e7f1f6;color:var(--blue);font-weight:900}.stage-title{font-weight:900;color:var(--navy)}.stage p{margin:0;font-size:13px;color:var(--muted)}.tag{display:inline-block;border-radius:999px;padding:4px 8px;font-size:11px;font-weight:900}.tag.ok{background:var(--green-bg);color:var(--green)}.tag.warn{background:var(--amber-bg);color:var(--amber)}.tag.red{background:var(--red-bg);color:var(--red)}.tag.info{background:#e8f2f8;color:var(--blue)}.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px}.compare>div{border:1px solid var(--line);border-radius:13px;padding:16px}.compare h4{margin:0 0 8px}.list{margin:8px 0;padding-left:21px}.list li{margin:6px 0}.law{border-left:4px solid var(--blue);padding:3px 0 3px 13px;margin:12px 0}.law b{color:var(--navy)}.law p{margin:2px 0;color:var(--muted);font-size:13px}.law a{color:var(--blue)}table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px}th{position:sticky;top:0;background:#eaf2f7;color:var(--navy);text-align:left;padding:10px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}th:first-child{border-left:1px solid var(--line);border-radius:9px 0 0 0}th:last-child{border-right:1px solid var(--line);border-radius:0 9px 0 0}td{padding:10px;border-bottom:1px solid var(--line);background:#fff;vertical-align:top}td:first-child{border-left:1px solid var(--line)}td:last-child{border-right:1px solid var(--line)}.scroll{overflow:auto}.calc{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.calc-box{border:1px solid var(--line);border-radius:12px;padding:15px;background:#fff}.calc-box label{display:block;font-weight:900;color:var(--navy);margin-bottom:7px}.calc-box input{width:100%;border:1px solid var(--line);border-radius:8px;padding:9px;font:inherit}.calc-result{margin-top:9px;padding:9px;border-radius:8px;background:#f0f6f8;color:var(--navy);font-weight:800}.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0}.toolbar input,.toolbar select{border:1px solid var(--line);border-radius:8px;padding:9px;background:#fff;font:inherit}.files{display:grid;grid-template-columns:repeat(3,minmax(230px,1fr));gap:10px}.file{display:flex;align-items:center;gap:11px;border:1px solid var(--line);border-radius:11px;padding:12px;background:#fff;text-decoration:none;color:var(--ink)}.file:hover{border-color:#8bb9cb;box-shadow:var(--shadow)}.file-icon{display:grid;place-items:center;width:39px;height:39px;border-radius:10px;background:#e8f2f8;color:var(--blue);font-size:12px;font-weight:900}.file b{display:block;font-size:13px}.file small{display:block;color:var(--muted)}details{border:1px solid var(--line);border-radius:11px;background:#fff;margin:9px 0}summary{cursor:pointer;padding:12px;font-weight:900;color:var(--navy)}details>div{padding:0 13px 13px;color:var(--muted);font-size:13px}.note{font-size:11px;color:var(--muted);margin-top:12px}.hidden{display:none!important}
+@media(max-width:1120px){.app{grid-template-columns:1fr}.side{position:relative;height:auto}.side nav{grid-template-columns:repeat(4,1fr)}.main{padding:22px}.metrics{grid-template-columns:repeat(3,1fr)}.route{grid-template-columns:1fr 1fr}.step:after{display:none}.files{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.side nav{grid-template-columns:1fr 1fr}.top{display:block}.actions{justify-content:flex-start;margin-top:12px}.metrics,.grid,.forks,.compare,.calc,.files{grid-template-columns:1fr}.stage{grid-template-columns:45px 1fr}.stage>div:nth-child(3),.stage>div:nth-child(4){grid-column:1/-1}.route{grid-template-columns:1fr}.main{padding:16px}.top h2{font-size:25px}}
+@media print{.side,.actions,.toolbar,.decision-box{display:none!important}.app{display:block}.main{max-width:none;padding:0}.panel{display:block!important;page-break-before:always}.panel:first-of-type{page-break-before:auto}.card,.metric{box-shadow:none}.files{grid-template-columns:1fr 1fr}.file{break-inside:avoid}}
+.basis{display:block;margin-top:6px;padding-top:5px;border-top:1px dashed #d6e1e8;color:#607789;font-size:10.5px;line-height:1.4;font-weight:700}
+.branch-tools{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 18px}.branch-tools button{border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--navy);padding:8px 12px;font-weight:900;cursor:pointer}.branch-tools button.selected{background:var(--navy);border-color:var(--navy);color:#fff}.branch-map{display:grid;gap:12px}.branch-node{border:1px solid var(--line);border-radius:13px;background:#fff;padding:13px 15px;transition:.2s opacity,.2s transform,.2s box-shadow}.branch-node strong{display:block;color:var(--navy);margin-bottom:3px}.branch-node p{margin:0;color:var(--muted);font-size:12px}.branch-node.decision{background:#fff8e9;border-color:#e8c67d}.branch-node.action{background:#edf6fa;border-color:#a8ccdb}.branch-node.stop{background:#fff1f0;border-color:#efbbb6}.branch-node.finish{background:#edf9f2;border-color:#b8dfca}.branch-arrow{text-align:center;color:var(--teal);font-weight:1000;font-size:20px;line-height:1}.branch-split{display:grid;grid-template-columns:1fr 1fr;gap:18px;position:relative}.branch-lane{display:grid;gap:10px;border-radius:14px;padding:13px;background:#f7f9fb;border:1px dashed #c8d6e0}.branch-lane>h4{margin:0;text-align:center;font-size:13px;color:var(--navy)}.branch-panel.filtered .branch-node.dim,.branch-panel.filtered .branch-lane.dim{opacity:.22}.branch-panel.filtered .branch-node.hit{box-shadow:0 0 0 2px rgba(15,124,121,.28),var(--shadow);transform:translateY(-1px)}.branch-summary{margin-top:14px;border-left:5px solid var(--teal);border-radius:10px;background:var(--mint);padding:13px 15px;color:var(--navy)}
+.intake-tools{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px}.intake-tools button{border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--navy);padding:8px 12px;font-weight:900;cursor:pointer}.intake-tools button.selected{background:var(--teal);border-color:var(--teal);color:#fff}.intake-timeline{position:relative;display:grid;gap:12px;margin:8px 0}.intake-timeline:before{content:"";position:absolute;left:26px;top:24px;bottom:24px;width:3px;background:linear-gradient(var(--teal),#8db6c7)}.intake-stage{position:relative;display:grid;grid-template-columns:55px minmax(180px,.65fr) minmax(280px,1.35fr) minmax(230px,1fr);gap:13px;align-items:start;border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff;transition:.2s opacity,.2s transform,.2s box-shadow}.intake-marker{position:relative;z-index:2;display:grid;place-items:center;width:43px;height:43px;border-radius:50%;background:var(--navy);color:#fff;font-weight:900;box-shadow:0 0 0 6px var(--bg)}.intake-stage h4{margin:0 0 4px;color:var(--navy)}.intake-stage p{margin:0;color:var(--muted);font-size:12.5px}.intake-stage .docs{border-left:3px solid #b7ceda;padding-left:11px}.intake-stage .docs b,.intake-stage .prosecution b{display:block;color:var(--navy);font-size:12px;margin-bottom:4px}.intake-stage .prosecution{border-radius:10px;padding:9px 10px;background:#f5f8fa}.intake-stage .prosecution.must{background:var(--red-bg);color:var(--red)}.intake-stage .prosecution.ask{background:var(--amber-bg);color:var(--amber)}.intake-stage .prosecution.none{background:var(--green-bg);color:var(--green)}.intake-stage.hit{box-shadow:0 0 0 2px rgba(15,124,121,.28),var(--shadow);transform:translateY(-1px)}.intake-stage.dim{opacity:.22}.intake-branch{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin:14px 0}.intake-outcome{border:1px solid var(--line);border-radius:14px;padding:15px;background:#fff}.intake-outcome h4{margin:0 0 6px}.intake-outcome.recognize{border-top:5px solid var(--blue)}.intake-outcome.close{border-top:5px solid var(--green)}.intake-outcome.transfer{border-top:5px solid var(--amber)}.doc-bundle{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.doc-chip{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}.doc-chip b{display:block;color:var(--navy);font-size:13px}.doc-chip span{display:block;color:var(--muted);font-size:11.5px;margin:4px 0 9px}.doc-chip a{font-size:11px;font-weight:900;color:var(--blue);text-decoration:none}.duty-legend{display:flex;gap:8px;flex-wrap:wrap;margin:9px 0}.duty-legend span{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--muted)}.duty-legend i{width:10px;height:10px;border-radius:50%}.duty-legend .must i{background:var(--red)}.duty-legend .ask i{background:var(--amber)}.duty-legend .none i{background:var(--green)}
+.inline-docs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:9px;padding-top:8px;border-top:1px dashed #cbd9e2}.inline-docs-label{font-size:10.5px;font-weight:900;color:var(--teal);margin-right:2px}.inline-doc{display:inline-flex;align-items:center;gap:4px;border:1px solid #b9d3df;border-radius:999px;padding:5px 8px;background:#f3f9fb;color:var(--navy);text-decoration:none;font-size:10.5px;font-weight:900;line-height:1.1}.inline-doc:before{content:"↓";display:grid;place-items:center;width:16px;height:16px;border-radius:50%;background:var(--teal);color:#fff;font-size:10px}.inline-doc:hover{background:var(--mint);border-color:var(--teal);transform:translateY(-1px)}td .inline-docs{margin-top:7px}.step .inline-docs{align-items:flex-start}.intake-stage .inline-docs{border-top-color:rgba(19,44,70,.16)}
+.inline-doc.optional-doc,.file.optional-file{border-color:#e2c985;background:#fffaf0}.inline-doc.optional-doc:before{content:"!";background:var(--amber)}.file.optional-file .file-icon{background:var(--amber-bg);color:var(--amber);font-size:10px}
+@media(max-width:720px){.branch-split{grid-template-columns:1fr}.branch-tools button{width:100%;text-align:left}}
+@media(max-width:960px){.intake-stage{grid-template-columns:55px 1fr}.intake-stage>div:nth-child(3),.intake-stage>div:nth-child(4){grid-column:2}.intake-branch{grid-template-columns:1fr}.doc-bundle{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.intake-tools button{width:100%;text-align:left}.doc-bundle{grid-template-columns:1fr}.intake-stage{grid-template-columns:48px 1fr;padding:11px}.intake-timeline:before{left:23px}.intake-marker{width:38px;height:38px}.intake-stage>div:nth-child(3),.intake-stage>div:nth-child(4){grid-column:1/-1}}
+/* 2026.8 UI refresh */
+body{background:radial-gradient(circle at 80% -10%,#e0f3f1 0,transparent 28%),linear-gradient(180deg,#f8fafb 0,#eef3f6 100%)}.app>*{min-width:0}
+.side{width:100%;background:linear-gradient(155deg,#0d2439 0%,#163d59 55%,#0e5d61 130%);box-shadow:8px 0 30px rgba(13,36,57,.12)}
+.side nav{gap:4px}.side button{position:relative;padding:10px 11px 10px 38px;border:1px solid transparent}.side button:before{position:absolute;left:12px;top:9px;display:grid;place-items:center;width:20px;height:20px;border-radius:6px;background:rgba(255,255,255,.09);font-size:11px;font-weight:900}.side button[data-panel="start"]:before{content:"01"}.side button[data-panel="branches"]:before{content:"02"}.side button[data-panel="flow"]:before{content:"03"}.side button[data-panel="border"]:before{content:"04"}.side button[data-panel="internal"]:before{content:"05"}.side button[data-panel="investigation"]:before{content:"06"}.side button[data-panel="finish"]:before{content:"07"}.side button[data-panel="deadlines"]:before{content:"08"}.side button[data-panel="rulebook"]:before{content:"09"}.side button[data-panel="forms"]:before{content:"10"}.side button[data-panel="sources"]:before{content:"11"}.side button.active{border-color:rgba(255,255,255,.12);box-shadow:inset 3px 0 #67d7c7}.side button.active:before{background:#67d7c7;color:#0d3445}
+.main{width:100%;max-width:1540px;min-width:0}.top{padding:24px 26px;border:1px solid rgba(210,225,233,.9);border-radius:20px;background:linear-gradient(135deg,rgba(255,255,255,.94),rgba(239,249,248,.88));box-shadow:0 18px 55px rgba(25,56,79,.09)}.top h2{letter-spacing:-.035em}.eyebrow{display:inline-flex;padding:5px 9px;border-radius:999px;background:var(--mint)}
+.metric{position:relative;overflow:hidden;border:0;box-shadow:0 12px 30px rgba(19,44,70,.08)}.metric:after{content:"";position:absolute;right:-28px;bottom:-35px;width:90px;height:90px;border-radius:50%;background:rgba(15,124,121,.07)}.metric:nth-child(2n):after{background:rgba(37,108,145,.08)}.card{border-color:#dfe8ee;box-shadow:0 12px 34px rgba(19,44,70,.065)}
+.rule-hero{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(310px,.75fr);gap:18px;margin-bottom:16px}.rule-lead{position:relative;overflow:hidden;padding:25px;border-radius:20px;color:#fff;background:linear-gradient(135deg,#12314d 0%,#14566a 62%,#0d7b76 125%);box-shadow:0 18px 40px rgba(19,49,77,.2)}.rule-lead:after{content:"§122";position:absolute;right:18px;bottom:-27px;font-size:94px;font-weight:1000;color:rgba(255,255,255,.075);letter-spacing:-.08em}.rule-lead .kicker{font-size:11px;font-weight:900;letter-spacing:.12em;color:#9be2d8}.rule-lead h3{position:relative;margin:7px 0 8px;font-size:25px;letter-spacing:-.03em}.rule-lead p{position:relative;max-width:760px;margin:0;color:#d8ebf0;font-size:13px}.rule-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}.rule-stat{display:flex;flex-direction:column;justify-content:center;min-height:92px;padding:14px;border:1px solid #dce7ed;border-radius:16px;background:#fff;box-shadow:var(--shadow)}.rule-stat b{font-size:24px;color:var(--navy)}.rule-stat span{font-size:11px;color:var(--muted)}
+.segmented{display:flex;gap:5px;padding:5px;margin:0 0 15px;border:1px solid var(--line);border-radius:13px;background:#eaf0f4;overflow:auto}.segmented button{flex:1;min-width:140px;border:0;border-radius:9px;padding:10px 12px;background:transparent;color:#587083;font:inherit;font-size:12px;font-weight:900;cursor:pointer;white-space:nowrap}.segmented button.active{background:#fff;color:var(--navy);box-shadow:0 4px 14px rgba(19,44,70,.1)}.rule-view{display:none}.rule-view.active{display:block}.rule-toolbar{display:grid;grid-template-columns:minmax(220px,1fr) 190px 160px;gap:8px;margin:0 0 12px}.rule-toolbar input,.rule-toolbar select{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#fff;font:inherit;font-size:12px}.matrix-table td:first-child{width:95px}.matrix-table td:nth-child(2){min-width:185px}.matrix-table td:nth-child(3){min-width:270px}.matrix-table td:nth-child(4){min-width:200px}.doc-actions{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}.download-mini,.official-mini{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:5px 8px;text-decoration:none;font-size:10.5px;font-weight:900}.download-mini{background:var(--mint);border:1px solid #addbd2;color:#086a63}.download-mini:before{content:"↓"}.official-mini{background:#edf3f7;border:1px solid #c9dae4;color:var(--blue)}.official-mini:before{content:"↗"}.ledger-grid{display:grid;grid-template-columns:repeat(3,minmax(260px,1fr));gap:10px}.ledger-card{position:relative;min-height:150px;padding:14px 14px 13px;border:1px solid var(--line);border-radius:14px;background:#fff}.ledger-card.conditional{background:#fffaf0;border-color:#ead6a8}.ledger-no{position:absolute;right:12px;top:10px;font-size:27px;font-weight:1000;color:#d7e3ea}.ledger-card h4{max-width:88%;margin:0 0 7px;color:var(--navy);font-size:14px}.ledger-meta{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:7px}.ledger-card p{margin:0;color:var(--muted);font-size:11.5px}.retention{display:inline-flex;border-radius:999px;padding:3px 7px;background:#edf3f7;color:#4c687a;font-size:10px;font-weight:900}.retention.long{background:#e8f7f2;color:var(--green)}.retention.forever{background:#eaf0ff;color:#304f9e}.register-note{margin-top:8px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;color:#6b7f8e}.record-files{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.record-file{padding:15px;border:1px solid var(--line);border-radius:14px;background:#fff}.record-file b{display:block;color:var(--navy);margin-bottom:5px}.record-file p{margin:0;color:var(--muted);font-size:12px}.record-file .basis{margin-top:8px}.retention-map{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}.retention-box{padding:15px;border-radius:14px;border:1px solid var(--line);background:#fff}.retention-box strong{display:block;font-size:22px;color:var(--navy)}.retention-box span{display:block;font-size:11px;color:var(--muted)}.checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px}.check-item{display:flex;gap:9px;align-items:flex-start;padding:11px;border-radius:11px;background:#f7fafb;font-size:12px}.check-item i{display:grid;place-items:center;flex:0 0 22px;height:22px;border-radius:7px;background:var(--mint);color:var(--teal);font-style:normal;font-weight:900}.source-stamp{display:inline-flex;gap:7px;align-items:center;margin-top:10px;padding:7px 10px;border-radius:10px;background:rgba(255,255,255,.1);font-size:10.5px;color:#d7e9ee}.count-result{font-size:11px;color:var(--muted);font-weight:800}
+.matrix-table td:nth-child(5){min-width:140px}.matrix-table td:nth-child(6){min-width:105px}
+.ledger-card{min-height:238px}.ledger-card.extra{min-height:218px;background:#f7fbfd;border-color:#bcd4df}.ledger-use{min-height:54px;padding:9px 10px!important;border-radius:10px;background:#f6f9fa;color:#3f5666!important}.ledger-use b,.ledger-basis b{display:block;margin-bottom:2px;color:var(--navy);font-size:10.5px}.ledger-basis{margin-top:7px!important;color:#4d6878!important}
+@media(max-width:1120px){.rule-hero{grid-template-columns:1fr}.ledger-grid,.record-files{grid-template-columns:1fr 1fr}.retention-map{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:720px){.rule-toolbar{grid-template-columns:1fr}.ledger-grid,.record-files,.retention-map,.checklist{grid-template-columns:1fr}.rule-lead{padding:20px}.rule-lead h3{font-size:21px}.rule-stats{grid-template-columns:1fr 1fr}.matrix-table{min-width:900px}.segmented button{min-width:125px}}
+.web-ready{background:linear-gradient(135deg,#e9f7f3,#edf6fa);border:1px solid #afd9d2}.web-ready .web-badge{display:inline-flex;margin-top:6px;padding:4px 8px;border-radius:999px;background:#fff;color:var(--teal);font-size:11px;font-weight:900}
+.file{align-items:flex-start}.file-copy{min-width:0;flex:1}.file-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.format-link{display:inline-flex;align-items:center;border-radius:8px;padding:6px 9px;text-decoration:none;font-size:10.5px;font-weight:900}.format-link.pdf{background:var(--teal);color:#fff}.format-link.source{background:#edf3f7;border:1px solid #c9dae4;color:var(--navy)}
+.inline-doc-group{display:inline-flex;align-items:center;gap:4px;flex-wrap:wrap;border:1px solid #b9d3df;border-radius:10px;padding:4px 5px;background:#f8fbfc}.inline-doc-name{padding:0 3px;color:var(--navy);font-size:10.5px;font-weight:900}.inline-doc-group.optional-doc{border-color:#e2c985;background:#fffaf0}.inline-doc-group .inline-doc{margin:0;padding:4px 7px;border-radius:7px}.inline-doc.pdf-doc:before{content:"PDF";width:auto;padding:0 4px;border-radius:5px}.inline-doc.source-doc:before{content:"원본";width:auto;padding:0 4px;border-radius:5px;background:var(--blue)}
+@media(max-width:720px){.file-actions{width:100%}.format-link{flex:1;justify-content:center}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="side">
+  <div class="brand">FIRE SPECIAL JUDICIAL POLICE</div>
+  <h1>사법처리 절차<br>실무 대시보드</h1>
+  <div class="date">법령 현행 확인 · 2026. 8. 21. / 웹판 · 8. 23.</div>
+  <nav id="nav">
+    <button class="active" data-panel="start">처음 30초 판단</button>
+    <button data-panel="branches">조사 분기 흐름도</button>
+    <button data-panel="flow">전체 프로세스</button>
+    <button data-panel="border">내사 ↔ 범죄인지</button>
+    <button data-panel="internal">내사 세부절차</button>
+    <button data-panel="investigation">수사 진행</button>
+    <button data-panel="finish">종결·송치</button>
+    <button data-panel="deadlines">기한 경고판</button>
+    <button data-panel="rulebook">문서·장부 관리</button>
+    <button data-panel="forms">서식 다운로드</button>
+    <button data-panel="sources">법적 근거</button>
+  </nav>
+  <div class="mini"><b>기본 원칙</b><br>내사는 모든 사건의 필수 단계가 아니다. 혐의가 이미 구체적이면 바로 범죄인지·입건하고, 불명확할 때에만 필요한 범위에서 입건 전 확인을 한다.</div>
+</aside>
+
+<main class="main">
+  <header class="top">
+    <div><div class="eyebrow">WEB READY · START → DECIDE → INVESTIGATE → TRANSFER</div><h2>처음 시작부터 검찰 송치 이후까지</h2><p>VS Code에서 관리하고 웹으로 공유하는 실무판입니다. 혐의의 구체성과 앞으로 하려는 행위를 기준으로 분기합니다.</p></div>
+    <div class="actions"><button class="btn primary" onclick="showPanel('rulebook')">문서·장부 찾기</button><button class="btn" onclick="showPanel('forms')">서식 내려받기</button><button class="btn" onclick="window.print()">인쇄/PDF</button><button class="btn" id="reset">판단 초기화</button></div>
+  </header>
+
+  <div class="alert web-ready"><div class="icon">↧</div><div><strong>한글 프로그램 없이도 모든 HWP 서식을 확인할 수 있습니다.</strong>각 서식의 <b>PDF 보기</b>는 브라우저에서 바로 열리고, <b>HWP 원본</b>은 편집이 필요할 때 내려받습니다.<br><span class="web-badge">PDF 62종 · HWP 원본 62종 · DOCX 자체양식 2종</span></div></div>
+
+  <div class="alert green"><div class="icon">✓</div><div><strong>내사는 필수 선행절차가 아닙니다.</strong>자체 적발·행정부서 이첩 등으로 범죄혐의가 이미 구체화됐다면 내사를 거치지 않고 범죄인지서를 작성해 입건할 수 있습니다. 익명신고·풍문처럼 진위가 불명확한 단서는 내사 또는 필요한 최소 범위의 입건 전 사실확인으로 분기합니다.</div></div>
+  <div class="alert amber"><div class="icon">!</div><div><strong>10일은 범죄인지보고의 일반 기한이 아닙니다.</strong>예방소방업무처리규정상 조치명령 등의 행정상 사전통지 기한과 혼동하기 쉽습니다. 구체적 범죄혐의가 인정되면 ‘접수일부터 10일’이 아니라 지체 없이 범죄인지·입건합니다.</div></div>
+
+  <section class="metrics">
+    <div class="metric"><span>실무 흐름</span><b>10단계</b><small>권한 확인부터 사후관리</small></div>
+    <div class="metric"><span>대표 진입경로</span><b>5유형</b><small>적발·제보·고발·인계·긴급</small></div>
+    <div class="metric"><span>즉시 입건행위</span><b>5개</b><small>출석조사·신문·체포·영장</small></div>
+    <div class="metric"><span>고소·고발 수사</span><b>2개월</b><small>미완료 시 검사 지휘</small></div>
+    <div class="metric"><span>법정 장부·서류</span><b>42종</b><small>제122조 전 목록 검색</small></div>
+  </section>
+
+  <section id="start" class="panel active">
+    <div class="grid">
+      <div class="card"><h3>30초 착수 판단 도우미</h3><div class="sub">각 질문에 답하면 권장 시작 경로가 표시됩니다.</div>
+        <div class="decision-box">
+          <div class="question" data-q="designation"><b>1. 담당 특별사법경찰관이 지명돼 있고 직무범위·관할이 맞습니까?</b><div class="choice"><button data-v="yes">예</button><button data-v="no">아니오</button></div></div>
+          <div class="question" data-q="specific"><b>2. 행위자·행위·시기·적용 벌칙이 객관자료로 구체화됐습니까?</b><div class="choice"><button data-v="yes">예</button><button data-v="no">아니오</button></div></div>
+          <div class="question" data-q="trigger"><b>3. 피혐의자 출석조사·피의자신문·체포·주거 등 영장 신청을 하려 합니까?</b><div class="choice"><button data-v="yes">예</button><button data-v="no">아니오</button></div></div>
+          <div id="decisionResult" class="result"><strong>판단 대기</strong><br>세 질문에 답해 주세요.</div>
+        </div>
+      </div>
+      <div class="card"><h3>사건이 들어오는 5가지 길</h3><div class="sub">접수 명칭만으로 내사·입건을 정하지 않습니다.</div>
+        <details open><summary>① 자체 적발·행정부서 이첩</summary><div>이미 행위자·행위·적용 벌칙과 객관자료가 특정됐다면 범죄인지 검토가 우선입니다. 핵심이 비어 있으면 필요한 최소 사실만 입건 전 조사합니다.</div></details>
+        <details><summary>② 익명 제보·풍문·언론보도</summary><div>출처와 내용에 사실확인 가치가 있으면 내사합니다. 가치가 없거나 형벌법규에 저촉되지 않음이 명백하면 불착수 사유를 기록합니다.</div></details>
+        <details><summary>③ 고소·고발</summary><div>요건·직무범위·관할을 확인해 정식 접수하고 수사합니다. 접수일부터 2개월 이내 완료가 원칙이며 미완료 시 검사의 지휘가 필요합니다.</div></details>
+        <details><summary>④ 타기관 인계·수사촉탁</summary><div>직무범위와 관할 사건이면 인수해 등록하고, 아니면 적법하게 이첩하거나 필요한 사항만 촉탁합니다.</div></details>
+        <details><summary>⑤ 현행범·긴급체포·영장 필요</summary><div>법정요건을 확인하고 즉시 입건합니다. 권리고지, 승인·영장, 통지와 석방 등 개별 법정기한을 사건별로 관리합니다.</div></details>
+      </div>
+    </div>
+    <div class="card"><h3>표준 흐름 한눈에 보기</h3><div class="sub">회색 분기는 모든 사건에서 반드시 거치는 단계가 아닙니다.</div>
+      <div class="route"><div class="step"><em>GATE</em><b>권한·관할</b><span>지명과 직무범위 확인</span></div><div class="step"><em>INTAKE</em><b>단서 접수</b><span>원본·접수경위 보존</span></div><div class="step"><em>DECIDE</em><b>내사 또는 입건</b><span>구체적 혐의로 분기</span></div><div class="step"><em>PROVE</em><b>임의·강제수사</b><span>구성요건별 증거수집</span></div><div class="step"><em>CLOSE</em><b>종결·검찰송치</b><span>보완지휘·결과통지</span></div></div>
+    </div>
+  </section>
+
+  <section id="branches" class="panel branch-panel">
+    <div class="card"><h3>단서 접수 후 조사 분기 흐름도</h3><div class="sub">전체 구조를 본 뒤 대표 경로를 누르면 해당 단계만 강조됩니다. 내사는 모든 사건의 필수 단계가 아닙니다.</div>
+      <div class="branch-tools" id="branchTools">
+        <button class="selected" data-route="all">전체 분기 보기</button>
+        <button data-route="direct">구체적 혐의 → 즉시 인지</button>
+        <button data-route="precheck">불명확 → 확인 후 인지</button>
+        <button data-route="close">불명확 → 혐의없음 종결</button>
+        <button data-route="forced">체포·영장 등 긴급경로</button>
+      </div>
+      <div class="branch-map" id="branchMap">
+        <div class="branch-node action" data-routes="all direct precheck close forced"><strong>① 단서 접수·권한 확인</strong><p>적발보고, 민원, 고소·고발, 타기관 통보 등의 원본을 보존하고 지명·직무범위·관할을 먼저 확인합니다.</p><small class="basis">근거: 사법경찰직무법 제5조·제6조 / 수사준칙 제6조·제15조</small></div>
+        <div class="branch-arrow">↓</div>
+        <div class="branch-node decision" data-routes="all direct precheck close forced"><strong>② 범죄혐의가 구체적인가?</strong><p>행위자, 행위, 시기·장소, 객관자료, 적용할 형벌조항이 수사를 개시할 정도로 특정됐는지 판단합니다.</p><small class="basis">근거: 형사소송법 제245조의10제3항 / 수사준칙 제17조~제19조</small></div>
+        <div class="branch-split">
+          <div class="branch-lane" data-routes="all direct forced"><h4>예 — 구체적 혐의 있음</h4>
+            <div class="branch-node action" data-routes="all direct forced"><strong>③ 내사 생략 → 범죄인지·입건</strong><p>범죄인지서에 피의자별 범죄사실, 적용법조와 인지경위를 구체적으로 작성합니다.</p><small class="basis">근거: 수사준칙 제18조 / 범죄사건부는 제120조</small></div>
+            <div class="branch-arrow">↓</div>
+            <div class="branch-node decision" data-routes="all direct forced"><strong>④ 앞으로 할 조사는 무엇인가?</strong><p>자료조회·참고인 조사 등 임의수사인지, 체포·영장 등 강제수사가 필요한지 구분합니다.</p><small class="basis">근거: 형사소송법 제199조·제200조·제215조</small></div>
+            <div class="branch-split">
+              <div class="branch-node action" data-routes="all direct"><strong>임의수사</strong><p>자료제출·사실조회·참고인 조사·임의제출을 우선합니다.</p><small class="basis">근거: 형사소송법 제199조·제218조 / 수사준칙 제36조~제53조</small></div>
+              <div class="branch-node stop" data-routes="all forced"><strong>체포·영장 등</strong><p>법정요건을 확인하고 검사 지휘·영장 절차와 권리고지를 준수합니다.</p><small class="basis">근거: 형사소송법 제200조의2 이하·제215조 / 수사준칙 제54조~제77조</small></div>
+            </div>
+          </div>
+          <div class="branch-lane" data-routes="all precheck close"><h4>아니오 — 혐의·진위 불명확</h4>
+            <div class="branch-node decision" data-routes="all precheck close"><strong>③ 단서에 사실확인 가치가 있는가?</strong><p>익명신고·풍문·언론보도의 출처와 구체성, 소관 형벌법규 저촉 가능성을 먼저 봅니다.</p><small class="basis">근거: 수사준칙 제17조제1항·제3항·제4항</small></div>
+            <div class="branch-arrow">↓</div>
+            <div class="branch-node action" data-routes="all precheck close"><strong>④ 내사 또는 최소한의 입건 전 사실확인</strong><p>내부전산·행정기록·공개자료 등으로 수사개시 필요성만 신속하게 확인합니다. 피혐의자 출석조사는 하지 않습니다.</p><small class="basis">근거: 수사준칙 제17조·제19조제3항 / 소방 집무규정 제13조</small></div>
+            <div class="branch-arrow">↓</div>
+            <div class="branch-node decision" data-routes="all precheck close"><strong>⑤ 확인 결과 혐의가 인정되는가?</strong><p>객관자료가 구성요건에 해당하는 상당한 정황을 만드는지 판단합니다.</p><small class="basis">근거: 형사소송법 제245조의10제3항 / 수사준칙 제17조제1항</small></div>
+            <div class="branch-split">
+              <div class="branch-node action" data-routes="all precheck"><strong>예 → 즉시 범죄인지·입건</strong><p>내사를 종결하고 범죄인지서 작성 후 정식 수사로 전환합니다.</p><small class="basis">근거: 수사준칙 제17조제1항·제18조</small></div>
+              <div class="branch-node stop" data-routes="all close"><strong>아니오 → 불입건·내사종결</strong><p>혐의없음 판단근거를 남기고 원칙적으로 피혐의자와 사건관계인에게 통지합니다.</p><small class="basis">근거: 수사준칙 제17조제2항·제19조제4항</small></div>
+            </div>
+          </div>
+        </div>
+        <div class="branch-arrow">↓</div>
+        <div class="branch-node finish" data-routes="all direct precheck forced"><strong>⑥ 수사결과 정리 → 검찰송치</strong><p>입건사건은 혐의 유무와 관계없이 의견서·기록목록·압수물총목록 등을 갖춰 관할 검찰청으로 송치합니다.</p><small class="basis">근거: 형사소송법 제245조의10제5항 / 수사준칙 제109조~제116조</small></div>
+      </div>
+      <div id="branchSummary" class="branch-summary"><strong>전체 분기</strong><br>혐의가 구체적이면 내사를 거치지 않고 바로 범죄인지·입건합니다. 불명확할 때에만 내사 또는 최소 사실확인으로 들어갑니다.</div>
+    </div>
+    <div class="alert red"><div class="icon">×</div><div><strong>분기선 넘지 않기</strong>피혐의자를 수사기관에 불러 조사하거나 피의자신문조서를 작성하고, 긴급체포·체포/구속영장 또는 주거 등에 대한 압수수색영장을 신청하면 수사가 개시된 것으로 보므로 즉시 입건해야 합니다.</div></div>
+  </section>
+
+  <section id="flow" class="panel">
+    <div class="card"><h3>사건 처리 10단계</h3><div class="sub">각 단계의 ‘남겨야 할 기록’까지 완료돼야 다음 단계가 안전합니다.</div>
+      <div class="timeline">
+        <div class="stage"><div class="num">00</div><div><div class="stage-title">권한 확인</div><span class="tag red">지명 전 수사 금지</span></div><p>지명, 관·리 구분, 직무범위, 관할, 제척·회피 여부 확인</p><p><b>기록:</b> 지명서 확인, 관할 검토, 인계·이첩<small class="basis">근거: 사법경찰직무법 제5조·제6조 / 수사준칙 제6조·제15조</small></p></div>
+        <div class="stage"><div class="num">01</div><div><div class="stage-title">단서 접수</div><span class="tag info">원본성</span></div><p>민원·제보·적발보고·전자파일의 접수경위와 원본 보존</p><p><b>기록:</b> 접수대장, 수령경위, 원본·사본 표시<small class="basis">근거: 수사준칙 제14조·제17조·제120조</small></p></div>
+        <div class="stage"><div class="num">02</div><div><div class="stage-title">초기 분류</div><span class="tag warn">분기점</span></div><p>행위자·일시·장소·방법·결과·벌칙·공소시효 가검토</p><p><b>분기:</b> 구체적 혐의→03 건너뛰고 즉시 입건 / 불명확→필요한 입건 전 확인<small class="basis">근거: 형사소송법 제245조의10제3항 / 수사준칙 제17조~제19조</small></p></div>
+        <div class="stage"><div class="num">03</div><div><div class="stage-title">내사·입건 전 확인</div><span class="tag warn">선택 단계</span></div><p>익명신고·풍문 등 진위가 불명확할 때 내부전산·공개자료·행정기록으로 수사개시 필요성만 신속 확인</p><p><b>기록:</b> 현행 수사준칙과 소방 집무규정에는 내사착수보고서 등 정형서식이 없습니다. 단서 원본, 확인 경과와 판단근거를 기록하고, 내부결재가 필요하면 기관 자체양식을 사용합니다.<small class="basis">근거: 수사준칙 제17조·제19조제3항·제4항 / 소방 집무규정 제13조</small></p></div>
+        <div class="stage"><div class="num">04</div><div><div class="stage-title">범죄인지·입건</div><span class="tag red">즉시</span></div><p>피의자별 범죄사실, 적용법조, 인지경위를 구체화하고 사건 등록</p><p><b>기록:</b> 범죄인지서, 범죄사건부, 필요 시 수사개시보고<small class="basis">근거: 형사소송법 제245조의10제3항 / 수사준칙 제18조·제19조·제25조·제120조</small></p></div>
+        <div class="stage"><div class="num">05</div><div><div class="stage-title">수사계획</div><span class="tag info">증거설계</span></div><p>입증사실·증거·예상반박·조사순서·기한을 구성요건별 설계</p><p><b>기록:</b> 수사보고, 수사지휘건의, 기한관리표<small class="basis">근거: 수사준칙 제3조·제28조~제34조</small></p></div>
+        <div class="stage"><div class="num">06</div><div><div class="stage-title">임의수사</div><span class="tag ok">우선 원칙</span></div><p>자료제출, 사실조회, 참고인 조사, 현장확인, 임의제출 증거 확보</p><p><b>기록:</b> 회답·조서·임의제출·압수목록<small class="basis">근거: 형사소송법 제199조·제200조·제218조 / 수사준칙 제36조~제53조</small></p></div>
+        <div class="stage"><div class="num">07</div><div><div class="stage-title">강제수사·피의자 조사</div><span class="tag red">필요·상당성</span></div><p>최소 범위 영장집행, 권리고지, 피의자신문과 반박자료 확인</p><p><b>기록:</b> 영장·집행조서·권리고지·신문조서<small class="basis">근거: 형사소송법 제200조의2~제200조의5·제201조·제215조·제244조의3 / 수사준칙 제44조~제77조</small></p></div>
+        <div class="stage"><div class="num">08</div><div><div class="stage-title">수사결과</div><span class="tag info">구성요건별</span></div><p>인정사실, 증거, 피의자 주장, 책임·공소시효를 최종 판단</p><p><b>기록:</b> 수사결과보고, 의견서, 기록목록<small class="basis">근거: 수사준칙 제105조·제110조·제111조·제113조</small></p></div>
+        <div class="stage"><div class="num">09</div><div><div class="stage-title">검찰송치·사후관리</div><span class="tag ok">모든 입건사건</span></div><p>기록·증거물 송치, 보완지휘·추송·기소중지·결과통지 관리</p><p><b>기록:</b> 송치서, 압수물총목록, 통지·종결기록<small class="basis">근거: 형사소송법 제245조의10제5항 / 수사준칙 제109조~제116조</small></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="border" class="panel">
+    <div class="card"><h3>내사와 범죄인지의 경계</h3><div class="sub">내사는 선택적 경로입니다. 범죄혐의가 이미 구체화된 사건에 내사를 형식적으로 끼워 넣을 필요가 없습니다.</div>
+      <div class="compare">
+        <div><h4>내사·입건 전 사실확인(필요할 때)</h4><ul class="list"><li>언론보도·익명신고·풍문 등으로 범죄혐의 존재 자체가 불명확</li><li>행위자·자료 진위·벌칙 적용 중 핵심이 누락</li><li>내부전산·행정기록 등 최소 사실확인</li><li>혐의 없음 → 정식 내사였다면 내사종결, 그 밖에는 불입건 판단과 근거 기록·원칙적 통지</li></ul></div>
+        <div><h4>범죄인지·입건</h4><ul class="list"><li>구성요건에 해당할 상당한 객관적 정황 존재</li><li>피혐의자 수사기관 출석조사 예정</li><li>피의자신문조서 작성 또는 체포</li><li>체포·구속영장, 주거 등에 대한 압수수색영장 신청</li></ul></div>
+      </div>
+    </div>
+    <div class="forks">
+      <div class="fork green"><h4>혐의 없음</h4><p>판단근거 기록 → 내사종결 → 원칙적으로 피혐의자·사건관계인에게 불입건 통지</p></div>
+      <div class="fork blue"><h4>혐의 인정</h4><p>내사종결 → 범죄인지서 작성 → 범죄사건부 등재 → 임의수사부터 진행</p></div>
+      <div class="fork amber"><h4>관할·직무범위 없음</h4><p>형사수사 행위를 멈추고 관할기관으로 이첩하거나 지명된 담당자에게 인계</p></div>
+    </div>
+    <div class="alert red"><div class="icon">×</div><div><strong>내사 단계에서 피혐의자를 불러 자백성 사실확인서를 받지 마세요.</strong>피혐의자 출석조사는 수사개시행위입니다. 객관자료를 먼저 확인하고, 피의자 조사 필요성이 생기면 범죄인지·입건 후 권리를 고지해 조사하는 흐름이 안전합니다.</div></div>
+  </section>
+
+  <section id="internal" class="panel">
+    <div class="card">
+      <h3>내사 세부절차 타임라인</h3>
+      <div class="sub">내사는 범죄혐의가 아직 구체적이지 않을 때 수사개시 여부를 신속히 결정하기 위한 입건 전 사실확인입니다. 타임라인에는 중복을 피하기 위해 단계별 대표서식만 한 번씩 표시하고, 분기별 추가서식은 아래 ‘내사 필요문서 묶음’에서 제공합니다.</div>
+      <div class="alert amber"><div class="icon">!</div><div><strong>현행 법령에는 ‘내사착수보고서’ 정형서식이 없습니다.</strong>종전 소방 집무규정에는 별지서식이 있었지만 2025년 개정 현행 규정에서는 삭제됐습니다. 아래 자체양식은 기록·내부결재가 필요할 때만 참고하고 법정 의무서식으로 취급하지 마세요.</div></div>
+      <div class="intake-tools" id="intakeTools">
+        <button class="selected" data-intake-route="all">전체 절차</button>
+        <button data-intake-route="recognize">혐의 인정 → 범죄인지</button>
+        <button data-intake-route="close">혐의 없음 → 내사종결</button>
+        <button data-intake-route="transfer">관할 없음 → 이첩</button>
+        <button data-intake-route="prosecutor">검찰 관여 시점만</button>
+      </div>
+      <div class="duty-legend"><span class="none"><i></i>통상 검찰보고 없음</span><span class="ask"><i></i>필요시 내사지휘 건의·사전상담</span><span class="must"><i></i>수사 전환 후 법정 사유가 있으면 보고·지휘</span></div>
+      <div class="intake-timeline" id="intakeTimeline">
+        <div class="intake-stage" data-intake-routes="all recognize close transfer">
+          <div class="intake-marker">01</div><div><h4>단서 접수·원본 보존</h4><span class="tag info">당일</span></div>
+          <div><p>적발보고, 민원, 익명신고, 언론보도, 타기관 통보의 접수경위·일시·제출자를 기록합니다. 문서, 사진, 전산조회 결과는 원본성·출처를 표시합니다.</p><small class="basis">근거: 수사준칙 제3조·제5조·제17조 / 소방 집무규정 제7조·제13조</small></div>
+          <div class="docs"><b>작성·확보 문서</b><p>접수문서, 범죄신고접수대장, 자료목록, 증거보존 메모</p></div>
+        </div>
+        <div class="intake-stage" data-intake-routes="all recognize close transfer prosecutor">
+          <div class="intake-marker">02</div><div><h4>지명·직무범위·관할 확인</h4><span class="tag red">선행 관문</span></div>
+          <div><p>담당자의 특사경 지명, 소방 분야 직무범위, 발생지·업체 소재지 등 관할을 확인합니다. 지명 전에는 자료 보존과 행정적 검토까지만 하고 형사수사 행위는 지명자에게 인계합니다.</p><small class="basis">근거: 사법경찰직무법 제5조·제6조 / 수사준칙 제6조·제15조</small></div>
+          <div class="prosecution none"><b>내사 단계</b><p>관할·직무범위가 없으면 추가 확인을 중단하고 관할기관에 이첩합니다. 관할구역 밖 수사의 검사 사전보고는 범죄인지 후 수사 단계에서 적용합니다.</p></div>
+        </div>
+        <div class="intake-stage" data-intake-routes="all recognize close prosecutor">
+          <div class="intake-marker">03</div><div><h4>혐의 구체성 1차 판단</h4><span class="tag warn">핵심 분기</span></div>
+          <div><p>행위자, 행위, 시기·장소, 객관자료, 적용 형벌조항이 특정됐는지 봅니다. 이미 구체적이면 내사를 끼워 넣지 않고 범죄인지합니다. 불명확하지만 확인 가치가 있을 때만 내사로 갑니다.</p><small class="basis">근거: 형사소송법 제245조의10제3항 / 수사준칙 제17조~제19조</small></div>
+          <div class="prosecution ask"><b>필요시 도움 요청</b><p>입건 여부·적용법조가 어려우면 관할 검찰청 실무에 따라 ‘내사지휘 건의’ 또는 사전상담을 할 수 있습니다. 이는 현행 수사준칙의 별도 법정서식은 아닙니다.</p></div>
+        </div>
+        <div class="intake-stage" data-intake-routes="all recognize close">
+          <div class="intake-marker">04</div><div><h4>내사 착수·범위 설정</h4><span class="tag info">신속 착수</span></div>
+          <div><p>내사 필요성, 확인할 쟁점, 최소 자료, 담당자, 예상 기간과 종결기준을 정합니다. 내부 보안결재 후 기관 기준에 따라 내사사건번호·대장·기록철을 만듭니다.</p><small class="basis">근거: 수사준칙 제17조·제19조제3항 / 소방 집무규정 제13조 / 공공기록물법 제18조</small></div>
+          <div class="prosecution none"><b>검찰 관여</b><p>일반적인 내사 착수 자체는 통상 검찰에 별도 보고하지 않음. 본부·관서 내부 지침 우선</p></div>
+        </div>
+        <div class="intake-stage" data-intake-routes="all recognize close prosecutor">
+          <div class="intake-marker">05</div><div><h4>객관자료 우선 확인</h4><span class="tag ok">비강제 방식</span></div>
+          <div><p>내부 전산, 행정기록, 공개자료, 관계기관 사실조회와 임의 자료제출로 핵심 사실만 확인합니다. 피혐의자를 수사기관으로 불러 조사하거나 압수하는 방식은 피합니다.</p><small class="basis">근거: 수사준칙 제7조·제19조제1항·제3항 / 형사소송법 제199조</small></div>
+          <div class="prosecution ask"><b>필요시 도움 요청</b><p>입건 전에는 기관 간 협조·이첩 또는 관할 검찰청 사전상담을 우선합니다. 별지 제7호 ‘수사지휘 건의서’는 범죄인지 후 수사 단계에서 사용합니다.</p></div>
+        </div>
+        <div class="intake-stage" data-intake-routes="all recognize close">
+          <div class="intake-marker">06</div><div><h4>자료별 확인기록·중간점검</h4><span class="tag info">지연 금지</span></div>
+          <div><p>조회·제출·방문 등 주요 확인마다 입수경위와 판단을 기록합니다. 장기화하지 말고 구성요건별로 ‘확인됨/불명/배척’을 갱신합니다. 별도 ‘내사보고’ 서식은 법정서식이 아닙니다.</p><small class="basis">근거: 수사준칙 제17조·제19조제3항 / 소방 집무규정 제13조</small></div>
+          <div class="docs"><b>작성 문서</b><p>자료수령·보존 기록, 쟁점대조표, 확인 경과 기록. 기관 내부결재가 필요하면 자체양식 사용</p></div>
+        </div>
+        <div class="intake-stage" data-intake-routes="all recognize close transfer prosecutor">
+          <div class="intake-marker">07</div><div><h4>최종 분기 판단</h4><span class="tag warn">즉시 결정</span></div>
+          <div><p>① 범죄혐의 인정 ② 혐의 없음 ③ 직무범위·관할 없음으로 나눕니다. 피혐의자 출석조사, 피의자신문, 긴급체포, 체포·구속영장 또는 주거 등에 대한 압수수색영장 신청이 필요해지면 이미 수사개시 단계입니다.</p><small class="basis">근거: 수사준칙 제17조제2항·제18조·제19조</small></div>
+          <div class="prosecution must"><b>특수한 의무</b><p>현행범 체포·인수 등 미입건 강제처분 사건은 제20조에 따른 분기별 목록 제출 대상 검토</p></div>
+        </div>
+        <div class="intake-stage" data-intake-routes="all recognize close transfer">
+          <div class="intake-marker">08</div><div><h4>종결·전환·이첩</h4><span class="tag ok">기록 완결</span></div>
+          <div><p>분기 결과와 근거자료를 기록하고 다음 절차로 바로 넘깁니다. 현행 법령에는 ‘내사결과보고서’ 정형서식이 없으며, 인지 후에는 피의자별 범죄사실과 적용법조를 적은 범죄인지서를 작성하고 범죄사건부에 등재합니다.</p><small class="basis">근거: 수사준칙 제17조제2항·제18조·제19조제4항·제120조·제126조</small></div>
+          <div class="docs"><b>최종 문서</b><p>종결 판단기록(자체양식) + 범죄인지서 / 입건하지 않는 결정 통지(자체양식) / 이첩서·인계인수 확인</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>최종 분기 도식</h3><div class="sub">07단계 판단 뒤에는 세 갈래 중 하나로 기록을 완결합니다.</div>
+      <div class="intake-branch">
+        <div class="intake-outcome recognize"><h4>① 혐의 인정</h4><p>판단근거 기록 → 즉시 수사개시 → 범죄인지서 작성 → 입건·범죄사건부 → 정식 임의수사</p><small class="basis">수사준칙 제17조제1항·제18조·제19조</small></div>
+        <div class="intake-outcome close"><h4>② 혐의 없음</h4><p>판단근거 기록 → 즉시 내사종결 → 내사종결사건철 편철 → 제19조제3항의 조사를 했다면 원칙적으로 피혐의자·사건관계인에게 ‘입건하지 않는 결정’ 통지</p><small class="basis">수사준칙 제17조제2항·제19조제4항·제126조</small></div>
+        <div class="intake-outcome transfer"><h4>③ 관할·직무범위 없음</h4><p>추가 형사수사 중단 → 자료목록과 함께 관할기관 이첩·인계 → 송부일·수령자·인계자료를 기록</p><small class="basis">수사준칙 제6조·제13조·제26조</small></div>
+      </div>
+      <div class="alert red"><div class="icon">!</div><div><strong>입건선 넘기</strong>피혐의자를 소방서 등 수사기관에 불러 조사하는 순간, 명칭이 ‘사실확인’이어도 수사개시로 보아 즉시 입건해야 합니다. 객관자료로 먼저 좁히고 사람을 조사해야 할 때 범죄인지하십시오.</div></div>
+    </div>
+
+    <div class="card">
+      <h3>내사 필요문서 묶음</h3><div class="sub">법정서식과 내부관리 문서를 구분합니다. 내부문서는 소속 본부·관서 양식이 있으면 그것을 우선합니다.</div>
+      <div class="doc-bundle">
+        <div class="doc-chip"><b>내사착수 검토기록 <span class="tag warn">자체양식</span></b><span>현행 법정서식 아님. 내부결재가 필요한 경우 단서·필요성·범위·담당자 등을 기록하는 참고양식</span><a href="서식/01_단서_접수/내사착수보고.hwp" download>참고 HWP</a></div>
+        <div class="doc-chip"><b>내사 관리표·기록표지·목록</b><span>현행 법정서식 아님. 사건번호, 피혐의자, 죄명 검토, 처리일, 담당자와 편철목록을 관리할 필요가 있을 때 자체양식 사용</span><em class="tag warn">자체양식</em></div>
+        <div class="doc-chip"><b>내사 경과기록 <span class="tag warn">자체양식</span></b><span>현행 법정서식 아님. 조회·방문·자료수령별 일시, 입수경위와 다음 조치 기록용</span><a href="서식/01_단서_접수/내사보고.hwp" download>참고 HWP</a></div>
+        <div class="doc-chip"><b>자료제출요청·사실조회</b><span>목적·대상·기간·제출기한·제출방법. 임의협조인지 별도 법정권한인지 표시</span><em class="tag info">사건별 작성</em></div>
+        <div class="doc-chip"><b>자료수령·증거보존 기록</b><span>제출자, 수령일시, 원본·사본, 페이지, 해시·매체, 보관위치</span><em class="tag info">사건별 작성</em></div>
+        <div class="doc-chip"><b>구성요건·증거 대조표</b><span>요건별 확인사실, 증거, 반대자료, 미확인사항, 공소시효</span><em class="tag info">권장 실무표</em></div>
+        <div class="doc-chip"><b>내사 종결검토기록 <span class="tag warn">자체양식</span></b><span>현행 법정서식 아님. 인정사실·법률판단·인지·종결·이첩 의견을 남기는 참고양식</span><a href="서식/01_단서_접수/내사결과보고.hwp" download>참고 HWP</a></div>
+        <div class="doc-chip"><b>내사지휘 건의 <span class="tag warn">자체양식</span></b><span>입건 여부·적용법조에 관한 검사 판단이 필요한 경우 사용. 관할 검찰청 별도 양식·지침이 있으면 그것을 우선</span><a href="서식/01_단서_접수/내사지휘건의_자체양식.docx" download>참고 DOCX</a></div>
+        <div class="doc-chip"><b>범죄인지서·입건하지 않는 결정 통지</b><span>혐의 인정 시 범죄인지서. 제19조제3항의 조사 후 입건하지 않으면 같은 조 제4항에 따라 통지하되 통지 제외사유를 먼저 검토</span><a href="서식/01_단서_접수/불입건결정통지_자체양식.docx" download>통지 참고 DOCX</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>검찰청에 도움을 구하거나 보고해야 하는 시점</h3>
+      <div class="sub">일반 내사 착수는 통상 내부보고로 충분합니다. 아래 사유가 생겼을 때 관할 지방검찰청·지청 담당검사에게 정식 건의·보고합니다.</div>
+      <div class="scroll"><table><thead><tr><th>시점·상황</th><th>구분</th><th>해야 할 일</th><th>문서·방식</th><th>근거</th></tr></thead><tbody>
+        <tr><td>일반적인 내사 착수·객관자료 확인</td><td><span class="tag ok">통상 불필요</span></td><td>단서 원본·확인경과·판단근거 기록</td><td>정형 법정서식 없음. 필요시 자체 내부결재 양식</td><td>수사준칙 제17조·제19조제3항, 소방 집무규정 제13조</td></tr>
+        <tr><td>내사 중 법령 해석, 죄명·죄수, 공소시효, 입건 여부가 곤란</td><td><span class="tag warn">선택 건의</span></td><td>쟁점·사실·미확인 사항·담당 의견·질문을 특정해 검사 판단 요청</td><td><a href="서식/01_단서_접수/내사지휘건의_자체양식.docx" download>내사지휘 건의 참고양식</a> 또는 관할 검찰청 지정양식</td><td>전국 공통 법정서식 없음 / 관할 검찰청 일반지침·협의 확인</td></tr>
+        <tr><td>검사 지휘가 불명확하거나 적법성·정당성에 이견</td><td><span class="tag warn">재지휘 건의</span></td><td>이견과 이행이 곤란한 부분을 특정하여 해당 검사에게 재지휘 요청</td><td>재지휘 건의서·수사보고</td><td>수사준칙 제32조</td></tr>
+        <tr><td>검사가 정한 이행기한을 지킬 수 없음</td><td><span class="tag red">연장지휘</span></td><td>기한 전에 미이행 사유와 완료계획을 소명하여 수사기일 연장지휘 건의</td><td>별지 제9호 수사기일 연장지휘 건의서</td><td>수사준칙 제34조</td></tr>
+        <tr><td>일반경찰·다른 특사경과 관할 또는 업무권한 충돌</td><td><span class="tag warn">선택 건의</span></td><td>기관 간 조정이 필요하면 검사에게 구체적 지휘 건의</td><td>수사지휘 건의서</td><td>수사준칙 제13조·제30조제2항</td></tr>
+        <tr><td>관할구역 밖에서 수사</td><td><span class="tag red">사전보고</span></td><td>원칙적으로 검사장·지청장에게 미리 보고. 긴급한 법정수사는 사후보고</td><td>관할구역 외 수사 보고·수사보고</td><td>수사준칙 제6조제2항</td></tr>
+        <tr><td>직무범위 밖 범죄 발견 + 진행 중이거나 징역형 포함</td><td><span class="tag red">지휘 후 통보</span></td><td>검사의 지휘를 받아 관할 수사기관에 범죄사실·증거자료 통보</td><td>수사지휘 건의 + 통보문</td><td>수사준칙 제26조</td></tr>
+        <tr><td>제25조 열거 중요범죄 수사개시</td><td><span class="tag red">즉시보고</span></td><td>관할 검사장·지청장에게 수사개시보고서 제출</td><td>별지 제5호 수사개시보고서</td><td>수사준칙 제25조</td></tr>
+        <tr><td>중요범죄 입건 또는 사안이 중대해 입건지휘 필요</td><td><span class="tag red">지휘 건의</span></td><td>법정 중요범죄는 입건 여부 지휘를 받고, 그 밖의 중대사건도 지휘 가능</td><td>수사지휘 건의서</td><td>수사준칙 제35조</td></tr>
+        <tr><td>변사자 또는 변사 의심 시체 발견</td><td><span class="tag red">즉시보고·지휘</span></td><td>관할 검사에게 즉시 발생사실을 보고하고 검시 지휘를 받아 현장보존·검시</td><td>변사사건 발생보고·검시조서</td><td>수사준칙 제21조~제24조</td></tr>
+        <tr><td>체포·구속·압수수색·감정유치·증거보전 등 강제처분</td><td><span class="tag red">검사 경유·승인</span></td><td>먼저 입건한 뒤 개별 법정요건에 따라 영장 신청·승인·청구 신청</td><td>해당 영장·승인·신청서</td><td>형사소송법 제200조의2 이하·제215조 / 수사준칙 제54조 이하·제89조~제92조</td></tr>
+        <tr><td>현행범 체포·인수 등 후 범죄인지서를 작성하지 않은 사건</td><td><span class="tag red">분기 제출</span></td><td>대상 행위가 있으면 매 분기 사건 목록과 요지를 검사에게 제출</td><td>사건 목록·요지</td><td>수사준칙 제20조</td></tr>
+        <tr><td>고소·고발일부터 2개월 내 수사 미완료</td><td><span class="tag red">지휘 필요</span></td><td>기간 만료 전에 미완료 사유·진행상황·향후계획을 붙여 지휘 요청</td><td>수사지휘 건의서</td><td>수사준칙 제95조</td></tr>
+        <tr><td>송치 전 지휘대상 사건</td><td><span class="tag red">사전지휘</span></td><td>입건지휘 사건, 인권·이의사건, 보완수사지휘 사건, 지정사건 등은 송치 전 지휘</td><td>수사지휘 건의서·수사기록</td><td>수사준칙 제110조</td></tr>
+        <tr><td>수사 종결</td><td><span class="tag red">검찰송치</span></td><td>모든 입건사건의 기록·증거물을 관할 검사장·지청장에게 송치</td><td>사건송치서·의견서·목록</td><td>형사소송법 제245조의10제5항 / 수사준칙 제109조·제111조</td></tr>
+        <tr><td>송치 후 계속수사 또는 새 범죄혐의 발견</td><td><span class="tag red">사전지휘·즉시보고</span></td><td>계속수사는 미리 주임검사 지휘, 다른 범죄혐의는 즉시 보고 후 지휘</td><td>수사지휘 건의·추가 송부서</td><td>수사준칙 제115조·제116조</td></tr>
+      </tbody></table></div>
+      <div class="alert amber"><div class="icon">i</div><div><strong>검사에게 물어볼 때</strong>“어떻게 처리할까요?”만 보내지 말고 ① 사건 요약 ② 확인된 사실 ③ 미확인 사실 ④ 적용법조 ⑤ 쟁점 ⑥ 담당 의견 ⑦ 요청할 지휘사항을 1~2쪽으로 특정합니다. 전화·구두지휘를 받았다면 수사보고로 즉시 기록하고, 필요하면 서면 또는 형사사법정보시스템 지휘를 요청할 수 있습니다.</div></div>
+    </div>
+
+    <div class="card">
+      <h3>내사 관련 핵심규정</h3><div class="sub">아래 링크는 2026. 8. 20. 확인한 현행 공식 원문입니다.</div>
+      <div class="grid">
+        <div class="law"><b>수사준칙 제17조~제20조</b><p>내사, 범죄인지서, 수사개시행위, 입건 전 사실확인·불입건 통지, 일부 미입건 강제처분 사건의 분기별 제출</p><a href="https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&amp;lspttninfSeq=163521" target="_blank" rel="noreferrer">국가법령정보센터 열기</a></div>
+        <div class="law"><b>수사준칙 제30조~제35조</b><p>수사지휘 건의, 서면·형사사법정보시스템 지휘, 재지휘, 지휘기한, 중요범죄 입건지휘</p><a href="https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&amp;lspttninfSeq=163521" target="_blank" rel="noreferrer">국가법령정보센터 열기</a></div>
+        <div class="law"><b>소방특별사법경찰관리 집무규정 제13조</b><p>소방 직무범위 범죄의 내사기준, 혐의 인정 시 즉시 수사개시, 혐의 없음 시 즉시 종결</p><a href="https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000260390" target="_blank" rel="noreferrer">국가법령정보센터 열기</a></div>
+        <div class="law"><b>형사소송법 제245조의10</b><p>특별사법경찰관의 수사개시 의무와 수사종결 후 검사에 대한 사건·기록·증거물 송치</p><a href="https://www.law.go.kr/법령/형사소송법/제245조의10" target="_blank" rel="noreferrer">국가법령정보센터 열기</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="investigation" class="panel">
+    <div class="grid">
+      <div class="card"><h3>임의수사 우선</h3><div class="sub">더 적게 침해하는 방법으로 같은 목적을 달성할 수 있는지 먼저 확인합니다.</div><ul class="list"><li>자료제출 요구·사실조회·수사촉탁</li><li>참고인 출석요구와 전화·전자우편 등 대체수단 검토</li><li>현장확인·실황조사</li><li>임의제출물의 제출의사·출처·원본성 기록</li><li>조서·수사보고·자료의 접수순 편철과 면수관리</li></ul></div>
+      <div class="card"><h3>강제수사 선택</h3><div class="sub">임의수사로 곤란하고 관련성·필요성·상당성이 있을 때 최소 범위로 설계합니다.</div><ul class="list"><li>압수대상·장소·범죄사실의 관련성 특정</li><li>영장 신청 전 검사 지휘·관할 실무 확인</li><li>집행 시 영장 제시, 참여권, 목록·증명서 등 절차 준수</li><li>전자정보는 선별·복제·보전·참여권 등 별도 절차 검토</li><li>압수물 보관·환부·폐기까지 대장으로 관리</li></ul></div>
+    </div>
+    <div class="card"><h3>피의자 조사 순서</h3><div class="route"><div class="step"><em>1</em><b>출석 조율</b><span>생업·사생활 침해 최소화</span></div><div class="step"><em>2</em><b>경위 설명</b><span>조사 이유·피의사실 고지</span></div><div class="step"><em>3</em><b>권리 고지</b><span>진술거부·변호인 조력</span></div><div class="step"><em>4</em><b>신문·반박</b><span>유리한 자료 제출기회</span></div><div class="step"><em>5</em><b>열람·확인</b><span>수사과정확인서·서명</span></div></div></div>
+  </section>
+
+  <section id="finish" class="panel">
+    <div class="card"><h3>수사 종결은 ‘송치의견 정리’</h3><div class="sub">특별사법경찰관은 수사를 종결하면 관할 지방검찰청 검사장 또는 지청장에게 사건을 송치합니다.</div>
+      <div class="route"><div class="step"><em>1</em><b>결과보고</b><span>사실·증거·주장 판단</span></div><div class="step"><em>2</em><b>의견 확정</b><span>피의자별·죄명별</span></div><div class="step"><em>3</em><b>기록 정리</b><span>목록·면수·압수물</span></div><div class="step"><em>4</em><b>검찰 송치</b><span>기록·증거물 송부</span></div><div class="step"><em>5</em><b>사후관리</b><span>보완지휘·추송·통지</span></div></div>
+    </div>
+    <div class="grid">
+      <div class="card"><h3>기본 송치 묶음</h3><ul class="list"><li>사건송치서</li><li>압수물총목록</li><li>기록목록</li><li>의견서</li><li>범죄경력·수사경력 조회 등 필요한 자료</li></ul><p class="note">영상녹화물, 특수압수물, 전자정보, 기소중지·참고인중지 사건은 추가 서류와 별도 송부절차를 확인합니다.</p></div>
+      <div class="card"><h3>가능한 송치의견</h3><ul class="list"><li>기소 의견</li><li>혐의없음</li><li>죄가안됨</li><li>공소권없음</li><li>각하</li><li>기소중지·참고인중지 등</li></ul><p class="note">특사경 입건사건은 일반 경찰의 불송치 제도를 그대로 적용하지 않고 수사종결 후 검찰에 송치합니다.</p></div>
+    </div>
+  </section>
+
+  <section id="deadlines" class="panel">
+    <div class="card"><h3>간이 기한 계산기</h3><div class="sub">업무 알림용입니다. 초일산입·공휴일·체포유형 등 정확한 법정 계산은 사건별 법령과 검사 지휘로 확정하세요.</div>
+      <div class="calc">
+        <div class="calc-box"><label>고소·고발 접수일</label><input type="date" id="complaintDate"><div class="calc-result" id="complaintResult">원칙적 2개월 완료기한</div></div>
+        <div class="calc-box"><label>체포 일시</label><input type="datetime-local" id="arrestDate"><div class="calc-result" id="arrestResult">24시간 통지·48시간 관련 시점</div></div>
+        <div class="calc-box"><label>조치명령 필요사실 인지일</label><input type="date" id="adminDate"><div class="calc-result" id="adminResult">행정상 10일 사전통지 참고</div></div>
+      </div>
+    </div>
+    <div class="card"><h3>기한·즉시조치 경고판</h3><div class="scroll"><table><thead><tr><th>기산점·상황</th><th>기한</th><th>조치</th><th>핵심 주의</th></tr></thead><tbody>
+      <tr><td>구체적 혐의 인정 또는 수사개시행위 착수</td><td><span class="tag red">즉시</span></td><td>범죄인지서 작성·입건·범죄사건부 등재</td><td>피혐의자 출석조사를 내사 명목으로 먼저 하지 않기</td></tr>
+      <tr><td>고소·고발 접수일</td><td><span class="tag warn">2개월 이내</span></td><td>수사 완료, 미완료 시 관할 검사 지휘</td><td>접수 당일 기한관리표 입력</td></tr>
+      <tr><td>체포·구속한 때</td><td><span class="tag red">늦어도 24시간</span></td><td>변호인 또는 피의자 지정인에게 서면 통지</td><td>긴급 전화통지 후에도 서면통지 필요</td></tr>
+      <tr><td>체포한 때</td><td><span class="tag red">48시간 관련기한</span></td><td>구속 필요 시 검사 신청 등 법정조치</td><td>체포유형별 기산점·석방시점 즉시 확인</td></tr>
+      <tr><td>조치명령이 필요한 사실을 안 날 등</td><td><span class="tag info">통상 10일</span></td><td>예방소방업무처리규정상 행정 사전통지</td><td>범죄인지 기한과 혼동 금지</td></tr>
+      <tr><td>공소시효·영장 유효기간·검사 지휘기한</td><td>사건별 상이</td><td>기산점·만료일·담당자·알림일 별도 관리</td><td>해당 법령·영장·지휘서가 이 표보다 우선</td></tr>
+    </tbody></table></div></div>
+  </section>
+
+  <section id="rulebook" class="panel">
+    <div class="rule-hero">
+      <div class="rule-lead">
+        <div class="kicker">DOCUMENT CONTROL CENTER</div>
+        <h3>행위 → 서류 → 장부 → 편철까지 한 번에</h3>
+        <p>사건 단계에서 작성할 문서와 함께 기재할 장부를 연결했습니다. 제122조의 비치 대상 42개와 개별 조문상 별도 관리대장, 제124조부터 제135조까지의 편철·갱신·보존 기준을 현행 규칙 원문에 맞춰 확인할 수 있습니다.</p>
+        <div class="source-stamp">현행 기준 · 법무부령 제1118호 · 2026. 7. 1. 시행</div>
+      </div>
+      <div class="rule-stats">
+        <div class="rule-stat"><b>42+4</b><span>제122조 42종 + 별도 절차대장</span></div>
+        <div class="rule-stat"><b>9</b><span>기본 서류철</span></div>
+        <div class="rule-stat"><b>5단계</b><span>영구·25·5·3·2년 보존</span></div>
+        <div class="rule-stat"><b>2개</b><span>사전 간인 대상 장부</span></div>
+      </div>
+    </div>
+
+    <div class="segmented" id="ruleTabs" role="tablist" aria-label="문서와 장부 보기 전환">
+      <button class="active" data-rule-view="events">언제 무슨 서류?</button>
+      <button data-rule-view="ledgers">장부·비치서류 42</button>
+      <button data-rule-view="records">서류철·편철방법</button>
+      <button data-rule-view="retention">갱신·보존·폐기</button>
+    </div>
+
+    <div id="rule-events" class="rule-view active">
+      <div class="card"><h3>사건행위별 문서·장부 연결표</h3><div class="sub">찾으려는 행위나 서류명을 입력하면 해당 단계만 남습니다. ‘내부 서식’은 기존 파일을 바로 내려받고, ‘법정 서식’은 국가법령정보센터 현행 별지서식을 엽니다.</div>
+        <div class="rule-toolbar"><input id="eventSearch" type="search" placeholder="예: 범죄인지, 출석요구, 송치, 압수"><select id="eventStage"><option value="all">모든 단계</option><option>착수·입건</option><option>수사지휘</option><option>임의수사</option><option>강제수사</option><option>조사</option><option>종결·송치</option><option>사후·기록</option></select><div id="eventCount" class="count-result"></div></div>
+        <div class="scroll"><table class="matrix-table"><thead><tr><th>단계</th><th>언제</th><th>작성·첨부할 서류</th><th>동시에 정리할 장부·서류철</th><th>검사 관여</th><th>근거</th></tr></thead><tbody id="documentMatrix"></tbody></table></div>
+        <p class="note">영장·체포·통신제한·보전처분은 이 표가 요건을 대체하지 않습니다. 해당 형사소송법·특별법과 관할 검사의 구체적 지휘를 함께 확인하세요.</p>
+      </div>
+    </div>
+
+    <div id="rule-ledgers" class="rule-view">
+      <div class="card"><h3>갖춰야 할 장부와 비치서류 42개</h3><div class="sub">제122조제1항의 순서와 별지 번호를 그대로 표시했습니다. 소방업무에서 일반적으로 쓰지 않는 통신제한 관련 22~35호는 ‘조건부’로 구분됩니다.</div>
+        <div class="rule-toolbar"><input id="ledgerSearch" type="search" placeholder="장부명·별지번호 검색"><select id="ledgerCategory"><option value="all">모든 분류</option><option value="기본철">기본 서류철</option><option value="출석·신병">출석·신병</option><option value="통신제한">통신제한(조건부)</option><option value="보전·특례">보전·특례</option><option value="핵심대장">핵심대장</option></select><select id="ledgerRetention"><option value="all">모든 보존기간</option><option value="영구">영구</option><option value="25년">25년</option><option value="5년">5년</option><option value="3년">3년</option><option value="2년">2년</option></select></div>
+        <div id="ledgerCount" class="count-result"></div><div id="ledgerGrid" class="ledger-grid"></div>
+      </div>
+      <div class="alert red"><div class="icon">!</div><div><strong>간인 대상은 미리 준비</strong>제20호 체포·구속인명부와 제41호 범죄사건부는 매 장마다 관할 지방검찰청 검사장 또는 지청장의 간인을 미리 받아야 합니다. 다만 제123조 요건을 갖춰 범죄사건부를 전자 관리하는 경우에는 범죄사건부 간인을 적용하지 않습니다.</div></div>
+      <div class="alert amber"><div class="icon">i</div><div><strong>22~35호의 적용 범위</strong>통신제한 관련 장부·서류는 「통신비밀보호법」 제5조에 따른 범죄 수사를 직무로 하는 기관만 의무 비치 대상입니다. 소방 특사경의 통상 직무에는 바로 적용된다고 단정하지 말고 직무범위와 수사대상 범죄를 확인하세요.</div></div>
+      <div class="card"><h3>제122조 목록 밖의 절차상 관리대장</h3><div class="sub">아래 서류는 제122조의 42종에는 없지만 개별 조문이 작성·기재·별도편철 또는 비치를 요구합니다. 제134조의 보존기간을 자동 적용하지 말고 기관 기록관리 기준과 관할 검찰청 지침을 확인하세요.</div><div id="extraLedgerGrid" class="ledger-grid"></div></div>
+    </div>
+
+    <div id="rule-records" class="rule-view">
+      <div class="card"><h3>기본 서류철 9개와 무엇을 넣는지</h3><div class="sub">장부를 ‘갖추는 것’뿐 아니라 어느 철에 편철할지가 중요합니다. 아래 내용은 제124조부터 제131조를 실무형으로 풀어 쓴 것입니다.</div><div class="record-files">
+        <div class="record-file"><b>1. 수사관계예규철</b><p>검찰청이나 중앙 행정기관이 발령한 수사지휘·명령·통첩 등 수사 관계 문서를 편철합니다.</p><span class="basis">수사준칙 제124조 · 영구 보존</span></div>
+        <div class="record-file"><b>2. 수사종결사건(송치사건)철</b><p>검사의 사건처분서, 기록목록 및 의견서 사본을 사건별로 편철합니다.</p><span class="basis">제125조 · 25년 보존</span></div>
+        <div class="record-file"><b>3. 내사종결사건철</b><p>범죄를 내사했으나 입건할 필요가 없다고 판단해 내사종결한 기록을 편철합니다.</p><span class="basis">제126조 · 25년 보존</span></div>
+        <div class="record-file"><b>4. 변사사건종결철</b><p>변사사건의 검시·지휘·종결 관련 기록을 사건 단위로 편철합니다.</p><span class="basis">제122조제1항제4호 · 25년 보존</span></div>
+        <div class="record-file"><b>5. 수사미제사건기록철</b><p>각 미제사건의 기록을 사건별로 한 묶음씩 편철합니다.</p><span class="basis">제127조 · 25년 보존</span></div>
+        <div class="record-file"><b>6. 통계철</b><p>특별사법경찰관리에 관한 각종 통계서류를 편철합니다.</p><span class="basis">제128조 · 5년 보존</span></div>
+        <div class="record-file"><b>7. 처분결과통지서철</b><p>검사의 기소·불기소 등 사건처분 결과 통지와 그 밖의 형사처분 결과 관련 서류를 편철합니다.</p><span class="basis">제129조 · 2년 보존</span></div>
+        <div class="record-file"><b>8. 검시조서철</b><p>변사자 검시조서와 이에 딸린 자료를 편철합니다.</p><span class="basis">제122조제1항제8호 · 2년 보존</span></div>
+        <div class="record-file"><b>9. 잡서류철</b><p>제1호부터 제8호까지의 서류철에 들어가지 않는 모든 특별사법경찰 사무 문서를 편철합니다.</p><span class="basis">제130조 · 2년 보존</span></div>
+      </div></div>
+      <div class="grid">
+        <div class="card"><h3>서류철 색인목록</h3><ul class="list"><li>모든 서류철에 색인목록을 붙입니다.</li><li>편철한 서류 일부를 빼낼 때는 색인목록 비고란에 날짜와 사유를 적고 담당 특별사법경찰관이 날인합니다.</li></ul><span class="basis">수사준칙 제131조</span></div>
+        <div class="card"><h3>필요하면 임의장부 추가</h3><p class="sub">제122조의 장부·서류 외에도 기관 실정상 필요한 접수대장, 기한관리표, 증거물 이동기록 등을 별도로 둘 수 있습니다.</p><span class="basis">수사준칙 제132조</span></div>
+      </div>
+    </div>
+
+    <div id="rule-retention" class="rule-view">
+      <div class="card"><h3>보존기간 지도</h3><div class="sub">보존기간은 사건처리를 완결하거나 최종절차를 마친 다음 해 1월 1일부터 계산합니다.</div><div class="retention-map">
+        <div class="retention-box"><strong>영구</strong><span>제1호 수사관계예규철</span></div>
+        <div class="retention-box"><strong>25년</strong><span>제2~5호, 제20호, 제40~42호</span></div>
+        <div class="retention-box"><strong>5년</strong><span>제6호 통계철</span></div>
+        <div class="retention-box"><strong>3년</strong><span>제22~39호</span></div>
+        <div class="retention-box"><strong>2년</strong><span>제7~19호, 제21호</span></div>
+      </div><span class="basis">수사준칙 제134조</span></div>
+      <div class="card"><h3>연말·폐기 체크리스트</h3><div class="checklist">
+        <div class="check-item"><i>1</i><span><b>해마다 장부·서류철 갱신</b><br>계속 쓰는 장부는 연도 구분을 명확히 표시합니다.</span></div>
+        <div class="check-item"><i>2</i><span><b>기산일 확인</b><br>완결 또는 최종절차 다음 해 1월 1일부터 보존기간을 셉니다.</span></div>
+        <div class="check-item"><i>3</i><span><b>폐기목록 작성</b><br>보존기간이 지난 장부·서류철은 바로 버리지 말고 폐기목록부터 작성합니다.</span></div>
+        <div class="check-item"><i>4</i><span><b>기록물 평가 절차</b><br>기록물관리 전문요원 심사와 기록물평가심의회 심의를 거친 뒤 폐기합니다.</span></div>
+      </div><span class="basis">수사준칙 제133조·제135조, 공공기록물 관리에 관한 법률 시행령 제43조</span></div>
+      <div class="alert green"><div class="icon">✓</div><div><strong>범죄사건부 전자관리</strong>형사사법정보시스템 또는 검찰총장·관할 검사장 등의 점검을 받은 동등 시스템을 갖춘 경우 범죄사건부를 전자 관리할 수 있습니다. 일반 온나라 문서등록만으로 이 요건을 충족한다고 보기는 어렵습니다.</div></div>
+    </div>
+  </section>
+
+  <section id="forms" class="panel">
+    <div class="card"><h3>단계별 업무서식 27종</h3><div class="sub">HWP 서식은 PDF와 원본을 함께 제공합니다. ‘자체양식’은 법정 의무서식이 아닙니다.</div><div class="toolbar"><input id="formSearch" placeholder="서식명 검색"><select id="stageFilter"><option value="all">모든 단계</option><option value="01">01 단서·내사</option><option value="02">02 인지·입건</option><option value="03">03 계획·지휘</option><option value="04">04 임의수사</option><option value="05">05 강제수사</option><option value="06">06 피의자조사</option><option value="07">07 종결·송치</option><option value="08">08 사후관리</option></select></div><div id="fileGrid" class="files"></div><p class="note">내사착수보고·내사보고·내사결과보고·내사지휘건의·입건하지 않는 결정 통지는 현행 수사준칙 또는 현행 소방 집무규정의 별지서식이 아닌 자체 제작 참고양식입니다. 웹 배포 시 ‘서식’, ‘서식_PDF’, ‘법정서식’ 폴더를 index.html과 함께 올리세요.</p></div>
+  </section>
+
+  <section id="sources" class="panel">
+    <div class="card"><h3>절차별 근거 조문 빠른표</h3><div class="sub">전체 프로세스 카드에는 같은 근거가 작은 글씨로 표시됩니다.</div><div class="scroll"><table><thead><tr><th>절차</th><th>핵심 근거</th><th>규정 내용</th></tr></thead><tbody>
+      <tr><td>지명·직무범위·관할</td><td>사법경찰직무법 제5조·제6조<br>수사준칙 제6조·제15조</td><td>검사장 지명, 소방 분야 직무범위와 관할, 지명서 휴대</td></tr>
+      <tr><td>내사·입건 전 확인</td><td>수사준칙 제17조·제19조제3항·제4항<br>소방 집무규정 제13조</td><td>불명확한 단서의 진상 확인, 신속한 입건 전 사실확인과 불입건 통지</td></tr>
+      <tr><td>범죄인지·입건</td><td>형사소송법 제245조의10제3항<br>수사준칙 제18조·제19조</td><td>범죄혐의 인식 시 수사 개시, 범죄인지서 작성, 수사개시행위 시 즉시 입건</td></tr>
+      <tr><td>임의수사</td><td>형사소송법 제199조·제200조·제218조<br>수사준칙 제36조~제53조</td><td>필요한 조사·조회, 출석요구, 임의제출과 조사기록</td></tr>
+      <tr><td>체포·압수수색·신문</td><td>형사소송법 제200조의2 이하·제215조·제244조의3<br>수사준칙 제44조~제77조</td><td>영장, 필요성·관련성, 권리고지, 피의자신문 및 집행절차</td></tr>
+      <tr><td>고소·고발 2개월</td><td>수사준칙 제95조</td><td>고소·고발일부터 2개월 내 수사 완료, 미완료 시 검사 지휘</td></tr>
+      <tr><td>검찰송치</td><td>형사소송법 제245조의10제5항<br>수사준칙 제109조~제116조</td><td>수사 종결 시 사건·기록·증거물 송치, 송치서류와 사후수사 관리</td></tr>
+      <tr><td>장부·비치서류·편철·보존</td><td>수사준칙 제120조·제122조~제135조</td><td>범죄사건부·압수부 기재, 42개 비치 대상, 서류철 편철, 간인·전자관리, 갱신·보존·폐기</td></tr>
+    </tbody></table></div></div>
+    <div class="card"><h3>현행 공식 근거</h3><div class="sub">대시보드 문구보다 사건 당시 시행 중인 법령 원문과 관할 검찰청의 구체적 지휘가 우선합니다.</div>
+      <div class="law"><b>특별사법경찰관리 수사준칙</b><p>법무부령 제1118호, 2026.7.1. 시행 · 내사, 범죄인지, 수사개시, 조사, 고소·고발 수사기간, 사건송치</p><a href="https://www.law.go.kr/lsInfoP.do?lsId=013978" target="_blank" rel="noreferrer">국가법령정보센터 열기</a></div>
+      <div class="law"><b>소방특별사법경찰관리 집무규정</b><p>소방청훈령 제418호, 2025.6.17. 시행 · 현행 제13조는 내사 기준을 정하지만 내사착수보고서·내사사건부·내사결과보고서 서식은 두고 있지 않음</p><a href="https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000260390" target="_blank" rel="noreferrer">국가법령정보센터 열기</a></div>
+      <div class="law"><b>사법경찰관리 직무법</b><p>검사장 지명, 관·리의 구분, 직무범위의 근거</p><a href="https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=261185" target="_blank" rel="noreferrer">국가법령정보센터 열기</a></div>
+      <div class="law"><b>예방소방업무처리규정</b><p>소방청훈령 제454호, 2026.2.27. 시행 · 조치명령 사전통지와 위반사실 보고</p><a href="https://www.law.go.kr/LSW/admRulInfoP.do?admRulSeq=2100000275254&amp;chrClsCd=010201" target="_blank" rel="noreferrer">국가법령정보센터 열기</a></div>
+      <div class="law"><b>형사소송법</b><p>체포·구속, 압수·수색, 임의제출, 피의자 권리 등 상위 절차</p><a href="https://www.law.go.kr/법령/형사소송법" target="_blank" rel="noreferrer">국가법령정보센터 열기</a></div>
+    </div>
+    <div class="alert green"><div class="icon">✓</div><div><strong>이 대시보드가 특히 강조하는 것</strong>지명 전 형사수사 금지, 내사의 최소화, 수사개시행위 전 입건, 임의수사 우선, 피의자 권리보장, 모든 입건사건의 검찰송치입니다.</div></div>
+  </section>
+</main>
+</div>
+<script>
+const nav=[...document.querySelectorAll('#nav button')];
+function showPanel(id){document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));nav.forEach(b=>b.classList.toggle('active',b.dataset.panel===id));if(location.hash!=='#'+id)history.replaceState(null,'','#'+id);window.scrollTo({top:0,behavior:'smooth'});}
+nav.forEach(b=>b.addEventListener('click',()=>showPanel(b.dataset.panel)));
+const branchPanel=document.getElementById('branches');
+const branchSummaries={
+  all:'<strong>전체 분기</strong><br>혐의가 구체적이면 내사를 거치지 않고 바로 범죄인지·입건합니다. 불명확할 때에만 내사 또는 최소 사실확인으로 들어갑니다.',
+  direct:'<strong>구체적 혐의 경로</strong><br>객관자료로 범죄혐의가 특정됨 → 내사 생략 → 범죄인지서 작성·입건 → 임의수사 → 수사결과 정리·검찰송치.',
+  precheck:'<strong>불명확하지만 확인 가치가 있는 경로</strong><br>내사 또는 최소 입건 전 사실확인 → 객관자료로 혐의 인정 → 즉시 범죄인지·입건 → 정식 수사·검찰송치.',
+  close:'<strong>확인 결과 혐의가 없는 경로</strong><br>필요한 사실확인 → 혐의없음 판단근거 기록 → 정식 내사였다면 내사종결 → 원칙적 불입건 통지.',
+  forced:'<strong>체포·영장 등 긴급경로</strong><br>수사개시행위에 착수하기 전에 즉시 입건 → 법정요건·검사 지휘·영장·권리고지 준수 → 수사결과 정리·검찰송치.'
+};
+document.querySelectorAll('#branchTools button').forEach(btn=>btn.addEventListener('click',()=>{
+  const route=btn.dataset.route;
+  document.querySelectorAll('#branchTools button').forEach(x=>x.classList.toggle('selected',x===btn));
+  branchPanel.classList.toggle('filtered',route!=='all');
+  document.querySelectorAll('#branchMap [data-routes]').forEach(el=>{
+    const matches=route==='all'||el.dataset.routes.split(/\s+/).includes(route);
+    el.classList.toggle('hit',route!=='all'&&matches);
+    el.classList.toggle('dim',route!=='all'&&!matches);
+  });
+  document.getElementById('branchSummary').innerHTML=branchSummaries[route];
+}));
+document.querySelectorAll('#intakeTools button').forEach(btn=>btn.addEventListener('click',()=>{
+  const route=btn.dataset.intakeRoute;
+  document.querySelectorAll('#intakeTools button').forEach(x=>x.classList.toggle('selected',x===btn));
+  document.querySelectorAll('#intakeTimeline [data-intake-routes]').forEach(el=>{
+    const routes=el.dataset.intakeRoutes.split(/\s+/);
+    const matches=route==='all'||routes.includes(route);
+    el.classList.toggle('hit',route!=='all'&&matches);
+    el.classList.toggle('dim',route!=='all'&&!matches);
+  });
+}));
+const answers={designation:null,specific:null,trigger:null};
+document.querySelectorAll('.question .choice button').forEach(btn=>btn.addEventListener('click',()=>{const q=btn.closest('.question').dataset.q;answers[q]=btn.dataset.v;btn.parentElement.querySelectorAll('button').forEach(x=>x.classList.toggle('selected',x===btn));renderDecision();}));
+function renderDecision(){const r=document.getElementById('decisionResult');if(Object.values(answers).some(v=>v===null)){r.innerHTML='<strong>판단 진행 중</strong><br>나머지 질문에도 답해 주세요.';return}if(answers.designation==='no'){r.innerHTML='<strong>권장: 지명된 담당자에게 인계</strong><br>자료 보존·내부 검토까지만 하고, 피혐의자 조사·압수·영장 신청 등 형사수사 행위는 하지 않습니다.';return}if(answers.specific==='yes'||answers.trigger==='yes'){r.innerHTML='<strong>권장: 범죄인지·즉시 입건</strong><br>범죄인지서와 범죄사건부를 먼저 정리하고, 수사계획에 따라 임의수사부터 진행합니다.';return}r.innerHTML='<strong>권장: 최소 범위의 입건 전 조사</strong><br>객관자료로 수사개시 필요성만 신속히 확인합니다. 혐의가 인정되거나 수사개시행위를 하게 되면 즉시 입건합니다.'}
+document.getElementById('reset').addEventListener('click',()=>{Object.keys(answers).forEach(k=>answers[k]=null);document.querySelectorAll('.choice button').forEach(x=>x.classList.remove('selected'));renderDecision();document.getElementById('complaintDate').value='';document.getElementById('arrestDate').value='';document.getElementById('adminDate').value='';updateDates()});
+function fmt(d,withTime=false){if(!d||isNaN(d))return '-';return new Intl.DateTimeFormat('ko-KR',withTime?{dateStyle:'medium',timeStyle:'short'}:{dateStyle:'medium'}).format(d)}
+function updateDates(){const c=document.getElementById('complaintDate').value;if(c){const d=new Date(c+'T00:00:00');d.setMonth(d.getMonth()+2);document.getElementById('complaintResult').textContent='원칙적 완료기한 참고: '+fmt(d)}else document.getElementById('complaintResult').textContent='원칙적 2개월 완료기한';const a=document.getElementById('arrestDate').value;if(a){const d=new Date(a),d24=new Date(d.getTime()+24*3600000),d48=new Date(d.getTime()+48*3600000);document.getElementById('arrestResult').textContent='24시간: '+fmt(d24,true)+' / 48시간: '+fmt(d48,true)}else document.getElementById('arrestResult').textContent='24시간 통지·48시간 관련 시점';const ad=document.getElementById('adminDate').value;if(ad){const d=new Date(ad+'T00:00:00');d.setDate(d.getDate()+10);document.getElementById('adminResult').textContent='행정 사전통지 참고일: '+fmt(d)}else document.getElementById('adminResult').textContent='행정상 10일 사전통지 참고'}
+['complaintDate','arrestDate','adminDate'].forEach(id=>document.getElementById(id).addEventListener('input',updateDates));
+const files=[
+['01','내사착수보고','서식/01_단서_접수/내사착수보고.hwp'],['01','내사보고','서식/01_단서_접수/내사보고.hwp'],['01','내사결과보고','서식/01_단서_접수/내사결과보고.hwp'],['01','내사지휘건의','서식/01_단서_접수/내사지휘건의_자체양식.docx'],['01','입건하지않는결정통지','서식/01_단서_접수/불입건결정통지_자체양식.docx'],['01','범죄신고접수대장','서식/01_단서_접수/범죄신고접수대장.hwp'],
+['02','범죄인지','서식/02_착수_입건/범죄인지.hwp'],['02','수사개시보고','서식/02_착수_입건/수사개시보고.hwp'],['02','수사보고','서식/02_착수_입건/수사보고.hwp'],
+['03','수사진행상황보고','서식/03_계획_지휘/수사진행상황보고.hwp'],['03','수사지휘건의','서식/03_계획_지휘/수사지휘건의.hwp'],
+['04','출석요구서(참고인)','서식/04_임의수사/출석요구서(참고인).hwp'],['04','임의제출','서식/04_임의수사/임의제출.hwp'],['04','압수조서(임의제출)','서식/04_임의수사/압수조서(임의제출).hwp'],['04','압수목록','서식/04_임의수사/압수목록.hwp'],
+['05','압수수색검증영장신청(사전)','서식/05_강제수사/압수수색검증영장신청(사전).hwp'],['05','압수조서','서식/05_강제수사/압수조서.hwp'],
+['06','출석요구서(피의자)','서식/06_피의자_조사/출석요구서(피의자).hwp'],['06','피의자신문조서','서식/06_피의자_조사/피의자신문조서.hwp'],['06','수사과정확인서','서식/06_피의자_조사/수사과정확인서.hwp'],
+['07','수사결과보고','서식/07_종결_송치/수사결과보고.hwp'],['07','사건송치서','서식/07_종결_송치/사건송치서.hwp'],['07','의견서','서식/07_종결_송치/의견서.hwp'],['07','기록목록','서식/07_종결_송치/기록목록.hwp'],['07','압수물총목록','서식/07_종결_송치/압수물총목록.hwp'],
+['08','사건처리결과통지_피(혐)의자','서식/08_사후관리/사건처리결과통지_피(혐)의자.hwp'],['08','사건처리결과통지_피해자','서식/08_사후관리/사건처리결과통지_피해자.hwp']];
+const formByName=Object.fromEntries(files.map(f=>[f[1],f[2]]));
+const optionalInternalForms=new Set(['내사착수보고','내사보고','내사결과보고','내사지휘건의','입건하지않는결정통지']);
+const pdfForLocal=file=>file?.toLowerCase().endsWith('.hwp')?file.replace(/^서식\//,'서식_PDF/').replace(/\.hwp$/i,'.pdf'):null;
+const ruleBase='https://www.law.go.kr/법령별표서식/(특별사법경찰관리에 대한 검사의 수사지휘 및 특별사법경찰관리의 수사준칙에 관한 규칙,20260701,서식';
+const ruleFormUrl=n=>ruleBase+n+')';
+const eventDocuments=[
+  {stage:'착수·입건',when:'혐의가 불명확한 단서를 내사하기로 한 때',docs:'정형 법정서식 없음. 단서 원본, 확인계획·경과·판단근거 기록(필요시 자체 내부결재 양식)',local:['내사착수보고','내사보고'],register:'종결 시 내사종결사건철에 관련 기록 편철',prosecutor:'필요 시 관할 검찰청 방식에 따른 내사지휘 건의·사전상담',basis:'제17조, 소방 집무규정 제13조'},
+  {stage:'착수·입건',when:'범죄혐의를 인식하거나 입건해야 하는 수사행위에 착수하기 전',docs:'범죄인지서(별지 제3호), 수사개시보고',local:['범죄인지','수사개시보고'],official:[3],register:'범죄사건부(별지 제144호) 즉시 기재',prosecutor:'통상 별도 사전승인 없음',basis:'제18조·제19조·제120조'},
+  {stage:'착수·입건',when:'범죄사건을 접수·입건·수사·송치하는 전 과정',docs:'사건별 수사기록 표지·목록과 증거자료',local:['기록목록'],official:[144],register:'범죄사건부에 접수일시·피의자·죄명 등 기재',prosecutor:'송치·지휘사항 반영',basis:'제20조·제120조'},
+  {stage:'수사지휘',when:'법령해석·관할·강제수사 등 검사의 구체적 지휘가 필요할 때',docs:'수사지휘 건의서(별지 제7호), 쟁점·증거·질문사항',local:['수사지휘건의'],official:[7],register:'수사기록에 건의서·지휘서 또는 지휘내용 수사보고 편철',prosecutor:'검사에게 건의',basis:'제30조'},
+  {stage:'수사지휘',when:'고소·고발 사건을 접수한 지 2개월 내 수사를 완료하지 못할 때',docs:'수사진행상황보고, 지연사유·향후계획을 담은 수사지휘 건의',local:['수사진행상황보고','수사지휘건의'],official:[7],register:'범죄사건부·기한관리표 갱신',prosecutor:'관할 검사 지휘 필요',basis:'제95조'},
+  {stage:'임의수사',when:'피의자·참고인에게 출석을 요구할 때',docs:'출석요구서(별지 제11호), 송달·연락 결과 수사보고',local:['출석요구서(피의자)','출석요구서(참고인)','수사보고'],official:[11,12],register:'출석요구통지부(별지 제12호) 기재',prosecutor:'통상 없음',basis:'제37조·제122조제1항제10호'},
+  {stage:'임의수사',when:'소유자·소지자가 물건이나 전자정보를 임의제출할 때',docs:'임의제출서, 압수조서, 압수목록, 보관·봉인 기록',local:['임의제출','압수조서(임의제출)','압수목록'],official:[145],register:'압수부(별지 제145호) 기재',prosecutor:'환부·처분 등 필요 시 지휘',basis:'형사소송법 제218조, 제120조'},
+  {stage:'조사',when:'피의자를 처음 또는 추가로 신문할 때',docs:'피의자신문조서(별지 제17·18호), 수사과정확인서, 권리고지 확인',local:['피의자신문조서','수사과정확인서'],official:[17,18],register:'수사기록에 조서·확인서 순서대로 편철',prosecutor:'구속 등 별도 사유 없으면 통상 없음',basis:'제44조·제45조·제105조'},
+  {stage:'조사',when:'참고인·고소인·고발인 진술을 조서나 진술서로 받을 때',docs:'진술조서 또는 진술서, 제출자료 목록, 조사경과 기록',local:['수사보고'],register:'수사기록에 진술·첨부자료 편철',prosecutor:'통상 없음',basis:'제45조~제48조·제105조'},
+  {stage:'강제수사',when:'체포영장을 신청할 때',docs:'체포영장 신청서와 범죄혐의·출석불응 우려 소명자료',register:'체포영장신청부(별지 제31호) 기재',official:[31],prosecutor:'검사에게 영장 신청',basis:'형사소송법 제200조의2, 제122조제1항제12호'},
+  {stage:'강제수사',when:'긴급체포 또는 현행범인 체포를 한 때',docs:'체포서류, 권리고지·통지서, 체포경위 및 압수 관련 기록',official:[33,38],register:'긴급체포원부(별지 제33호) 또는 현행범인체포원부(별지 제38호)',prosecutor:'법정 시간·승인·영장절차 준수',basis:'형사소송법 제200조의3·제211조, 제122조제13·14호'},
+  {stage:'강제수사',when:'구속영장을 신청하거나 체포·구속영장을 집행한 때',docs:'구속영장 신청자료, 영장 원본, 집행·통지·접견 기록',official:[29,43,46,47,48,54],register:'구속영장신청부, 영장집행원부, 접견부, 교통부·진료부, 체포·구속인명부',prosecutor:'검사 신청·법원 청구, 지휘 필수',basis:'형사소송법 제201조, 제122조제11·15~20호'},
+  {stage:'강제수사',when:'압수·수색·검증영장을 신청·집행할 때',docs:'압수·수색·검증영장 신청서, 집행조서, 압수목록, 참여권 고지·교부 기록',local:['압수수색검증영장신청(사전)','압수조서','압수목록'],official:[58,145],register:'영장 신청부(별지 제58호), 압수부(별지 제145호)',prosecutor:'검사에게 영장 신청',basis:'형사소송법 제215조, 제122조제21·42호'},
+  {stage:'강제수사',when:'몰수·부대보전·추징보전 또는 특례조치를 신청할 때',docs:'각 신청서와 필요성·대상재산 소명자료',official:[122,123,124,125,127,131],register:'몰수·부대보전 신청부, 추징보전 신청부, 취소신청부, 특례조치 등 신청부',prosecutor:'검사에게 신청·결과 보고',basis:'제107조·제108조·제122조제36~39호'},
+  {stage:'종결·송치',when:'내사 결과 입건할 필요가 없다고 판단할 때',docs:'종결 판단근거 기록(정형 법정서식 없음). 제19조제3항의 조사를 했다면 입건하지 않는 결정 통지',local:['내사결과보고','입건하지않는결정통지'],register:'내사종결사건철에 사건기록 편철',prosecutor:'쟁점 있으면 관할 검찰청 방식에 따른 내사지휘 건의',basis:'제17조제2항·제19조제4항·제126조'},
+  {stage:'종결·송치',when:'수사를 종결해 사건을 송치할 때',docs:'사건송치서(133), 압수물 총목록(134), 기록 목록(135), 의견서(136), 필요한 범죄·수사경력 자료',local:['사건송치서','압수물총목록','기록목록','의견서','수사결과보고'],official:[133,134,135,136],register:'범죄사건부 송치사항 기재, 송치사건철에 처분서·목록·의견서 사본 편철',prosecutor:'관할 검찰청 송치',basis:'제109조·제111조·제113조·제120조·제125조'},
+  {stage:'종결·송치',when:'제110조의 사전지휘 대상 사건을 송치하기 전',docs:'수사지휘 건의서와 사건기록·쟁점자료',local:['수사지휘건의'],official:[7],register:'사건송치서 비고란에 지휘검사·일자 기재, 지휘서 편철',prosecutor:'송치 전 구체적 지휘',basis:'제110조'},
+  {stage:'사후·기록',when:'검사의 사건처분 결과를 통지받았을 때',docs:'사건처분결과 통지, 관련 후속조치 기록',local:['사건처리결과통지_피(혐)의자','사건처리결과통지_피해자'],register:'처분결과통지서철 편철, 범죄사건부 결과 갱신',prosecutor:'보완수사·후속 지휘 이행',basis:'제120조·제129조'},
+  {stage:'사후·기록',when:'피의자 등의 소재를 발견하거나 발견통보를 처리할 때',docs:'소재발견 보고·통보 및 후속조치 기록',official:[141],register:'피의자 등 소재발견처리부(별지 제141호)',prosecutor:'지명·수배 사건 지휘 확인',basis:'제122조제1항제40호'},
+  {stage:'사후·기록',when:'해가 바뀌거나 보존기간이 끝난 장부·서류철을 정리할 때',docs:'연도 구분, 폐기목록, 기록물평가 심의 관련 서류',register:'모든 장부·서류철 갱신 및 보존기간 관리',prosecutor:'간인 장부는 사전 협의',basis:'제133조~제135조'}
+];
+const ledgers=[
+  [1,'수사관계예규철',null,'기본철'],[2,'수사종결사건(송치사건)철',null,'기본철'],[3,'내사종결사건철',null,'기본철'],[4,'변사사건종결철',null,'기본철'],[5,'수사미제사건기록철',null,'기본철'],[6,'통계철',null,'기본철'],[7,'처분결과통지서철',null,'기본철'],[8,'검시조서철',null,'기본철'],[9,'잡서류철',null,'기본철'],
+  [10,'출석요구통지부',12,'출석·신병'],[11,'체포·구속영장 집행원부',29,'출석·신병'],[12,'체포영장신청부',31,'출석·신병'],[13,'긴급체포원부',33,'출석·신병'],[14,'현행범인체포원부',38,'출석·신병'],[15,'구속영장신청부',43,'출석·신병'],[16,'체포·구속인 접견부',46,'출석·신병'],[17,'체포·구속인 교통부',47,'출석·신병'],[18,'체포·구속인 진료부',48,'출석·신병'],[19,'물품차입부',51,'출석·신병'],[20,'체포·구속인명부',54,'출석·신병'],[21,'압수·수색·검증영장 신청부',58,'출석·신병'],
+  [22,'통신제한조치허가 신청부',75,'통신제한'],[23,'긴급통신제한조치대장',79,'통신제한'],[24,'긴급통신제한조치 통보서 발송부',82,'통신제한'],[25,'통신제한조치 집행위탁허가 신청부',85,'통신제한'],[26,'통신제한조치 집행사실 통지부',90,'통신제한'],[27,'통신제한조치 집행사실 통지유예 승인신청부',92,'통신제한'],[28,'전기통신에 대한 압수·수색·검증 집행사실 통지부',95,'통신제한'],[29,'전기통신 보관 등 승인신청부',97,'통신제한'],[30,'통신사실 확인자료제공 요청집행대장',99,'통신제한'],[31,'통신사실 확인자료 회신대장',101,'통신제한'],[32,'통신사실 확인자료제공 요청허가 신청부',105,'통신제한'],[33,'긴급 통신사실 확인자료제공 요청대장',107,'통신제한'],[34,'통신사실 확인자료제공 요청 집행사실 통지부',110,'통신제한'],[35,'통신사실 확인자료제공 요청 집행사실 통지유예 승인신청부',112,'통신제한'],
+  [36,'몰수·부대보전 신청부',124,'보전·특례'],[37,'추징보전 신청부',125,'보전·특례'],[38,'추징보전명령 취소신청부',127,'보전·특례'],[39,'특례조치 등 신청부',131,'보전·특례'],[40,'피의자 등 소재발견처리부',141,'핵심대장'],[41,'범죄사건부',144,'핵심대장'],[42,'압수부',145,'핵심대장']
+];
+const ledgerGuidance={
+  1:['검찰청·감독관청의 수사 관련 훈령·통첩·지령을 받거나 개정본으로 교체할 때 편철하고, 사건 처리 전 수시 참조','제122조제1항제1호·제124조'],
+  2:['수사를 종결하여 검사에게 송치한 뒤 사건송치서·기록목록·의견서 사본을 사건별로 편철','제122조제1항제2호·제125조'],
+  3:['내사 결과 입건할 필요가 없다고 판단해 완결한 때, 단서부터 종결 판단까지의 기록을 편철','제122조제1항제3호·제126조'],
+  4:['직무범위 안의 변사사건을 종결하여 관련 기록을 사건 단위로 보관할 때','제122조제1항제4호'],
+  5:['장차 검거할 가망이 없는 피해신고 사건 등 수사미제 기록을 별도 관리할 때','제122조제1항제5호·제127조'],
+  6:['월·분기·연간 등 특별사법경찰업무 통계를 작성하거나 제출한 때 편철','제122조제1항제6호·제128조'],
+  7:['검사의 기소·불기소·중지·이송 결정이나 각급 심의·재판결과 통지서를 받은 때 편철','제122조제1항제7호·제129조'],
+  8:['직무범위 안의 변사사건에서 작성·접수한 검시조서를 보관할 때','제122조제1항제8호'],
+  9:['제1호부터 제8호까지 어느 서류철에도 속하지 않는 특별사법경찰 사무서류를 편철','제122조제1항제9호·제130조'],
+  10:['피의자 또는 참고인에게 서면·전화·문자 등으로 출석요구를 한 즉시 해당 사항 기재','제36조제7항·제122조제1항제10호'],
+  11:['체포영장 또는 구속영장을 실제 집행한 때 집행 결과 기재','제54조제9항·제122조제1항제11호'],
+  12:['검사에게 체포영장을 신청한 때 신청·처리 결과 기재','제55조제2항·제122조제1항제12호'],
+  13:['피의자를 긴급체포한 즉시 작성하고, 석방 시 석방일시·사유까지 추가 기재','제57조제2항·제5항, 제122조제1항제13호'],
+  14:['현행범인을 체포·인수하여 관리하고, 석방할 때 석방일시·사유를 기재','제59조제3항·제122조제1항제14호'],
+  15:['검사에게 구속영장을 신청한 때 신청·처리 결과 기재','제60조제4항·제122조제1항제15호'],
+  16:['체포·구속된 피의자에 대한 접견 신청을 받아 접견하게 한 때 작성','제63조제4항제1호·제122조제1항제16호'],
+  17:['체포·구속된 피의자에게 서류·물건을 주고받게 한 때 작성','제63조제4항제2호·제122조제1항제17호'],
+  18:['체포·구속된 피의자에 대한 의사 진료를 실시한 때 작성','제63조제4항제3호·제122조제1항제18호'],
+  19:['유치인에게 자기 용도의 차입물품 사용을 허가한 때 기재','제64조제3항·제122조제1항제19호'],
+  20:['체포·구속장소 감찰에 대비해 체포·구속된 사람의 신병 현황을 계속 관리','제68조제1항·제122조제1항제20호 및 제2항'],
+  21:['검사에게 압수·수색·검증영장을 신청한 때 작성','제70조제3항·제122조제1항제21호'],
+  22:['통신제한조치 허가 또는 기간연장 청구를 검사에게 신청한 때 기재','제79조제2항·제122조제1항제22호'],
+  23:['긴급통신제한조치를 실시한 때 작성하여 소속기관에 비치','제79조제4항·제122조제1항제23호'],
+  24:['긴급통신제한조치 사실을 법원에 통보한 때 발송내역 기재·비치','제79조제6항·제122조제1항제24호'],
+  25:['통신제한조치 집행을 위탁하거나 허가기간 연장을 통지한 때 기재','제80조제3항·제122조제1항제25호'],
+  26:['통신제한조치 집행사실 등을 대상자에게 통지한 때 기재','제82조제1항·제122조제1항제26호'],
+  27:['통신제한조치 집행사실 통지유예 승인을 신청한 때 기재','제82조제2항·제122조제1항제27호'],
+  28:['송·수신 완료 전기통신의 압수·수색·검증 집행사실을 가입자에게 통지한 때 기재','제83조·제122조제1항제28호'],
+  29:['범죄수사를 위한 전기통신 보관 등의 승인을 신청한 때 기재','제84조·제122조제1항제29호'],
+  30:['전기통신사업자에게 통신사실 확인자료 제공을 요청한 때 기재','제85조제1항·제122조제1항제30호'],
+  31:['전기통신사업자로부터 통신사실 확인자료를 회신받은 때 기재','제85조제3항·제122조제1항제31호'],
+  32:['통신사실 확인자료제공 요청허가를 검사에게 신청한 때 기재','제86조제2항·제122조제1항제32호'],
+  33:['긴급 통신사실 확인자료제공을 요청한 때 기재','제87조제1항·제122조제1항제33호'],
+  34:['통신사실 확인자료제공 요청의 집행사실을 당사자에게 통지한 때 기재','제88조제1항·제122조제1항제34호'],
+  35:['통신사실 확인자료제공 요청 집행사실의 통지유예 승인을 신청한 때 기재','제88조제2항·제122조제1항제35호'],
+  36:['범죄수익 몰수·부대보전을 검사에게 신청한 때 기재','제107조제2항·제122조제1항제36호'],
+  37:['범죄수익 추징보전을 검사에게 신청한 때 기재','제107조제2항·제122조제1항제37호'],
+  38:['검사의 요구에 따라 추징보전명령 취소를 신청한 때 기재','제107조제5항·제122조제1항제38호'],
+  39:['마약류범죄 관련 입국·상륙 또는 세관절차 특례조치를 신청한 때 기재','제108조제3항·제122조제1항제39호'],
+  40:['기소중지 피의자·증거 또는 참고인중지 참고인을 발견해 수사에 착수한 때 기재','제117조제5항·제122조제1항제40호'],
+  41:['범죄사건을 접수·입건·수사·송치하는 전 과정에서 기본 사건정보와 진행사항을 기재','제120조제1항·제122조제1항제41호 및 제2항·제123조'],
+  42:['임의제출 또는 영장집행 등으로 압수물건이 생긴 때 품종·수량·처리상황을 기재','제120조제2항·제122조제1항제42호']
+};
+const extraLedgers=[
+  ['A','체포·구속영장등본교부대장',45,'체포·구속영장 등본 교부를 청구받아 실제 교부한 때 작성','제62조제2항','제134조에 직접 규정 없음'],
+  ['B','전자정보 보전요청 신청부','58의4','검사에게 전자정보 보전요청 또는 보전기간 연장을 신청한 때 기재','제73조의2제2항','2026.7.1. 시행 신설 · 제134조에 직접 규정 없음'],
+  ['C','전자정보 긴급보전요청부','58의7','긴급보전요청을 한 때 작성하여 소속기관에 비치','제73조의2제4항','2026.7.1. 시행 신설 · 명시적 비치 의무'],
+  ['D','참고인 등 소재수사 지휘부',137,'참고인중지 의견으로 송치할 때 별도 편철·관리하고 사본 1부를 수사기록에 편철','제114조제1항','분기 1회 이상 소재수사 원칙(제114조제2항)']
+];
+const ruleTitleByNo=Object.fromEntries([...ledgers.filter(x=>x[2]).map(x=>[String(x[2]),x[1]]),...extraLedgers.map(x=>[String(x[2]),x[1]])]);
+ruleTitleByNo['95']='송·수신이 완료된 전기통신에 대한 압수·수색·검증 집행사실 통지부';
+ruleTitleByNo['99']='통신사실 확인자료제공 요청 집행대장';
+const officialRuleUrl='https://www.law.go.kr/lsInfoP.do?lsId=013978';
+const ruleFormSlug=n=>{const [main,sub]=String(n).split('의');return`${main.padStart(3,'0')}${sub?`-${sub}`:''}`};
+const localRuleFormUrl=n=>ruleTitleByNo[String(n)]?`법정서식/HWP/별지_${ruleFormSlug(n)}.hwp`:null;
+const localRulePdfUrl=n=>ruleTitleByNo[String(n)]?`법정서식/PDF/별지_${ruleFormSlug(n)}.pdf`:null;
+function retentionFor(no){if(no===1)return'영구';if([2,3,4,5,20,40,41,42].includes(no))return'25년';if(no===6)return'5년';if(no>=22&&no<=39)return'3년';return'2년'}
+function localActions(names=[]){return names.filter(n=>formByName[n]).map(n=>{const original=formByName[n],pdf=pdfForLocal(original);return`${pdf?`<a class="download-mini" href="${encodeURI(pdf)}" target="_blank" rel="noreferrer">${n} PDF</a>`:''}<a class="official-mini" href="${encodeURI(original)}" download>${n} ${original.toLowerCase().endsWith('.docx')?'DOCX':'HWP'}</a>`}).join('')}
+function officialActions(nums=[]){return nums.map(n=>{const local=localRuleFormUrl(n),pdf=localRulePdfUrl(n);return`${pdf?`<a class="download-mini" href="${encodeURI(pdf)}" target="_blank" rel="noreferrer">별지 ${n}호 PDF</a>`:''}${local?`<a class="official-mini" href="${encodeURI(local)}" download>별지 ${n}호 HWP</a>`:''}<a class="official-mini" href="${encodeURI(ruleFormUrl(n))}" target="_blank" rel="noreferrer">법제처</a>`}).join('')}
+function renderEventDocuments(){
+  const q=(document.getElementById('eventSearch')?.value||'').trim().toLowerCase(),stage=document.getElementById('eventStage')?.value||'all';
+  const rows=eventDocuments.filter(x=>(stage==='all'||x.stage===stage)&&[x.stage,x.when,x.docs,x.register,x.prosecutor,x.basis].join(' ').toLowerCase().includes(q));
+  document.getElementById('documentMatrix').innerHTML=rows.map(x=>`<tr><td><span class="tag info">${x.stage}</span></td><td><b>${x.when}</b></td><td>${x.docs}<div class="doc-actions">${localActions(x.local)}${officialActions(x.official)}</div></td><td>${x.register}</td><td>${x.prosecutor}</td><td><span class="basis">${x.basis}</span></td></tr>`).join('')||'<tr><td colspan="6">검색 결과가 없습니다.</td></tr>';
+  document.getElementById('eventCount').textContent=`${rows.length}개 절차 표시`;
+}
+function renderLedgers(){
+  const q=(document.getElementById('ledgerSearch')?.value||'').trim().toLowerCase(),category=document.getElementById('ledgerCategory')?.value||'all',retention=document.getElementById('ledgerRetention')?.value||'all';
+  const rows=ledgers.filter(x=>{const g=ledgerGuidance[x[0]]||[];return(category==='all'||x[3]===category)&&(retention==='all'||retentionFor(x[0])===retention)&&`${x[0]} ${x[1]} ${x[2]||''} ${g.join(' ')}`.toLowerCase().includes(q)});
+  document.getElementById('ledgerGrid').innerHTML=rows.map(x=>{const r=retentionFor(x[0]),conditional=x[0]>=22&&x[0]<=35,g=ledgerGuidance[x[0]]||['','제122조'];return`<article class="ledger-card${conditional?' conditional':''}"><span class="ledger-no">${String(x[0]).padStart(2,'0')}</span><h4>${x[1]}</h4><div class="ledger-meta"><span class="retention ${r==='영구'?'forever':r==='25년'?'long':''}">${r} 보존</span><span class="tag ${conditional?'warn':'info'}">${conditional?'통신범죄 담당기관만':x[3]}</span></div><p class="ledger-use"><b>언제 활용?</b>${g[0]}</p><p class="ledger-basis"><b>법적 근거</b>${g[1]} · 보존 제134조</p><div class="doc-actions">${x[2]?officialActions([x[2]]):`<a class="official-mini" href="${officialRuleUrl}" target="_blank" rel="noreferrer">법령 원문</a>`}</div>${x[0]===20||x[0]===41?'<div class="register-note"><b>사전 간인 대상</b> · 범죄사건부 전자관리 요건 충족 시 제41호는 예외</div>':''}</article>`}).join('')||'<p>검색 결과가 없습니다.</p>';
+  document.getElementById('ledgerCount').textContent=`총 42개 중 ${rows.length}개 표시`;
+  document.getElementById('extraLedgerGrid').innerHTML=extraLedgers.map(x=>`<article class="ledger-card extra"><span class="ledger-no">${x[0]}</span><h4>${x[1]}</h4><div class="ledger-meta"><span class="tag info">제122조 밖</span><span class="retention">별도 기준 확인</span></div><p class="ledger-use"><b>언제 활용?</b>${x[3]}</p><p class="ledger-basis"><b>법적 근거</b>${x[4]} · ${x[5]}</p><div class="doc-actions">${officialActions([x[2]])}</div></article>`).join('');
+}
+document.querySelectorAll('#ruleTabs button').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('#ruleTabs button').forEach(x=>x.classList.toggle('active',x===btn));
+  document.querySelectorAll('#rulebook .rule-view').forEach(x=>x.classList.toggle('active',x.id==='rule-'+btn.dataset.ruleView));
+}));
+['eventSearch','eventStage'].forEach(id=>document.getElementById(id)?.addEventListener(id==='eventSearch'?'input':'change',renderEventDocuments));
+['ledgerSearch','ledgerCategory','ledgerRetention'].forEach(id=>document.getElementById(id)?.addEventListener(id==='ledgerSearch'?'input':'change',renderLedgers));
+function attachDocs(target,names,label='필요서식'){
+  if(!target||!names?.length)return;
+  const available=names.filter(name=>formByName[name]);
+  if(!available.length)return;
+  const box=document.createElement('div');box.className='inline-docs';
+  const allOptional=available.every(name=>optionalInternalForms.has(name));
+  box.innerHTML=`<span class="inline-docs-label">${allOptional?'참고 자체양식':label}</span>`+available.map(name=>{const original=formByName[name],pdf=pdfForLocal(original),optional=optionalInternalForms.has(name);return`<span class="inline-doc-group${optional?' optional-doc':''}"><span class="inline-doc-name">${name}${optional?' · 자체':''}</span>${pdf?`<a class="inline-doc pdf-doc" href="${encodeURI(pdf)}" target="_blank" rel="noreferrer" title="브라우저에서 PDF 열기">보기</a>`:''}<a class="inline-doc source-doc" href="${encodeURI(original)}" download title="${optional?'현행 법정서식 아님 · 자체 참고양식':'원본 내려받기'}">${original.toLowerCase().endsWith('.docx')?'DOCX':'HWP'}</a></span>`}).join('');
+  target.appendChild(box);
+}
+function cardByHeading(scope,selector,text){return [...document.querySelectorAll(`${scope} ${selector}`)].find(el=>el.querySelector('h3,h4,.stage-title,strong,b')?.textContent.includes(text));}
+function wireProcedureDownloads(){
+  const flowDocs={
+    '권한 확인':['수사보고'],'단서 접수':['범죄신고접수대장'],'초기 분류':['수사보고','수사지휘건의'],
+    '내사·입건 전 확인':['내사착수보고','내사보고','내사결과보고'],'범죄인지·입건':['범죄인지','수사개시보고'],
+    '수사계획':['수사보고','수사진행상황보고','수사지휘건의'],'임의수사':['출석요구서(참고인)','임의제출','압수조서(임의제출)','압수목록'],
+    '강제수사·피의자 조사':['압수수색검증영장신청(사전)','압수조서','출석요구서(피의자)','피의자신문조서','수사과정확인서'],
+    '수사결과':['수사결과보고','의견서','기록목록'],'검찰송치·사후관리':['사건송치서','압수물총목록','사건처리결과통지_피(혐)의자','사건처리결과통지_피해자']
+  };
+  document.querySelectorAll('#flow .stage').forEach(stage=>{const title=stage.querySelector('.stage-title')?.textContent.trim();attachDocs(stage.children[3]||stage,flowDocs[title]);});
+
+  const internalDocs=[
+    ['범죄신고접수대장'],[],['내사지휘건의'],['내사착수보고'],
+    [],['내사보고'],['범죄인지'],['내사결과보고']
+  ];
+  document.querySelectorAll('#internal .intake-stage').forEach((stage,i)=>attachDocs(stage.children[3]||stage,internalDocs[i],'이 단계 서식'));
+
+  const startDetails=document.querySelectorAll('#start details');
+  const startDocs=[['범죄인지','수사보고'],['내사착수보고','내사보고'],['범죄인지','수사진행상황보고'],['수사보고','수사지휘건의'],['범죄인지','압수수색검증영장신청(사전)']];
+  startDetails.forEach((detail,i)=>attachDocs(detail.querySelector('div')||detail,startDocs[i]));
+
+  const branchRules=[
+    ['단서 접수',['범죄신고접수대장']],['내사 생략',['범죄인지']],['내사 또는 최소',['내사착수보고','내사보고']],
+    ['혐의 없음',['내사결과보고','사건처리결과통지_피(혐)의자']],['혐의 인정',['내사결과보고','범죄인지']],
+    ['범죄인지·입건',['범죄인지']],['정식 수사',['수사보고','수사진행상황보고']],['검찰송치',['사건송치서','의견서','기록목록']]
+  ];
+  document.querySelectorAll('#branches .branch-node').forEach(node=>{const text=node.textContent;const hit=branchRules.find(r=>text.includes(r[0]));if(hit)attachDocs(node,hit[1]);});
+
+  const borderForks=document.querySelectorAll('#border .fork');
+  [['내사결과보고','사건처리결과통지_피(혐)의자','사건처리결과통지_피해자'],['내사결과보고','범죄인지'],['수사보고','수사지휘건의']].forEach((docs,i)=>attachDocs(borderForks[i],docs));
+
+  const investigationCards=document.querySelectorAll('#investigation>.grid>.card');
+  attachDocs(investigationCards[0],['출석요구서(참고인)','임의제출','압수조서(임의제출)','압수목록']);
+  attachDocs(investigationCards[1],['수사지휘건의','압수수색검증영장신청(사전)','압수조서','압수목록']);
+  const suspectSteps=document.querySelectorAll('#investigation .route .step');
+  [['출석요구서(피의자)'],['수사보고'],['피의자신문조서'],['피의자신문조서'],['수사과정확인서']].forEach((docs,i)=>attachDocs(suspectSteps[i],docs));
+
+  const finishSteps=document.querySelectorAll('#finish .route .step');
+  [['수사결과보고'],['의견서'],['기록목록','압수물총목록'],['사건송치서'],['사건처리결과통지_피(혐)의자','사건처리결과통지_피해자']].forEach((docs,i)=>attachDocs(finishSteps[i],docs));
+  const finishCards=document.querySelectorAll('#finish>.grid>.card');
+  attachDocs(finishCards[0],['사건송치서','의견서','기록목록','압수물총목록']);
+  attachDocs(finishCards[1],['의견서','수사결과보고']);
+
+  const deadlineRows=document.querySelectorAll('#deadlines tbody tr');
+  [['범죄인지','수사보고'],['수사진행상황보고','수사지휘건의'],[],[],[],['수사지휘건의']].forEach((docs,i)=>attachDocs(deadlineRows[i]?.children[2],docs));
+}
+function renderFiles(){const q=document.getElementById('formSearch').value.trim().toLowerCase(),s=document.getElementById('stageFilter').value;document.getElementById('fileGrid').innerHTML=files.filter(f=>(s==='all'||f[0]===s)&&f[1].toLowerCase().includes(q)).map(f=>{const optional=optionalInternalForms.has(f[1]),pdf=pdfForLocal(f[2]),isDocx=f[2].toLowerCase().endsWith('.docx');return`<article class="file${optional?' optional-file':''}"><span class="file-icon">${optional?'참고':isDocx?'DOCX':'서식'}</span><div class="file-copy"><b>${f[1]}${optional?' · 자체양식':''}</b><small>${optional?'현행 법정서식 아님':f[0]+' 단계'}</small><div class="file-actions">${pdf?`<a class="format-link pdf" href="${encodeURI(pdf)}" target="_blank" rel="noreferrer">PDF 보기·다운로드</a>`:''}<a class="format-link source" href="${encodeURI(f[2])}" download>${isDocx?'DOCX':'HWP'} 원본</a></div></div></article>`}).join('')||'<p>검색 결과가 없습니다.</p>'}
+document.getElementById('formSearch').addEventListener('input',renderFiles);document.getElementById('stageFilter').addEventListener('change',renderFiles);renderFiles();renderEventDocuments();renderLedgers();wireProcedureDownloads();
+const initialPanel=location.hash.slice(1);if(initialPanel&&document.getElementById(initialPanel)?.classList.contains('panel'))showPanel(initialPanel);
+</script>
+</body>
+</html>
